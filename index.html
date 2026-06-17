@@ -1,479 +1,847 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuales Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuales Premium | Habilidades que Generan Ingresos</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-hover: #f3cf5a;
+            --dark: #0f1115;
+            --card: #1a1f29;
+            --white: #ffffff;
+            --bg: #0b0c10;
+            --text: #94a3b8;
+            --text-title: #ffffff;
+            --border: rgba(212, 175, 55, 0.15);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --whatsapp: #25D366;
+            --overlay: rgba(0,0,0,0.6);
+        }
 
-<style>
-:root{
---gold:#d4af37;
---dark:#0f1115;
---card:#1a1f29;
---white:#ffffff;
-}
+        .light {
+            --dark: #f8fafc;
+            --card: #ffffff;
+            --white: #0f172a;
+            --bg: #f1f5f9;
+            --text: #475569;
+            --text-title: #0f172a;
+            --border: rgba(15, 23, 42, 0.1);
+            --shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            --overlay: rgba(15,23,42,0.3);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
-scroll-behavior:smooth;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-body{
-background:var(--dark);
-color:var(--white);
-}
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+            padding-top: 75px;
+        }
 
-header{
-position:sticky;
-top:0;
-z-index:1000;
-background:#111;
-padding:15px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid rgba(212,175,55,.2);
-}
+        /* --- HEADER PREMIUM --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: background 0.3s;
+        }
+        body.light header {
+            background: rgba(255, 255, 255, 0.85);
+        }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-color:var(--gold);
-}
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+        }
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-transition:.3s;
-}
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-nav a:hover{
-color:var(--gold);
-}
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: .3s;
+        }
 
-.hero{
-padding:100px 5%;
-text-align:center;
-background:linear-gradient(135deg,#000,#1c1c1c);
-}
+        nav a:hover {
+            color: var(--gold);
+        }
 
-.hero h1{
-font-size:60px;
-color:var(--gold);
-margin-bottom:20px;
-}
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-.hero p{
-font-size:20px;
-max-width:700px;
-margin:auto;
-opacity:.9;
-}
+        .dark-toggle {
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        .dark-toggle:hover { transform: rotate(15deg); }
 
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:15px 30px;
-background:var(--gold);
-color:black;
-font-weight:bold;
-border-radius:10px;
-text-decoration:none;
-}
+        .cart-trigger {
+            background: var(--card);
+            color: var(--gold);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .cart-trigger:hover {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+        .cart-badge {
+            background: #ff3b30;
+            color: white;
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
-.stats{
-padding:50px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+        /* --- HERO --- */
+        .hero {
+            padding: 100px 5% 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 70%);
+        }
 
-.stat{
-background:var(--card);
-padding:25px;
-border-radius:15px;
-text-align:center;
-}
+        .hero h1 {
+            font-size: 54px;
+            color: var(--text-title);
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
+        .hero h1 span { color: var(--gold); }
 
-.stat h2{
-color:var(--gold);
-font-size:35px;
-}
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
 
-.section-title{
-text-align:center;
-font-size:40px;
-margin:50px 0 20px;
-color:var(--gold);
-}
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 16px 36px;
+            background: var(--gold);
+            color: #000;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 20px rgba(212,175,55,0.15);
+        }
 
-.search{
-max-width:500px;
-margin:20px auto;
-display:block;
-padding:15px;
-width:90%;
-border:none;
-border-radius:10px;
-}
+        .btn:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(212,175,55,0.25);
+        }
 
-.products{
-padding:20px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
+        /* --- STATS --- */
+        .stats {
+            padding: 40px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.card{
-background:var(--card);
-border-radius:15px;
-overflow:hidden;
-transition:.3s;
-}
+        .stat {
+            background: var(--card);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
 
-.card:hover{
-transform:translateY(-8px);
-}
+        .stat h2 {
+            color: var(--gold);
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .stat p { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+        /* --- CATÁLOGO --- */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin: 80px 0 20px;
+            color: var(--text-title);
+            letter-spacing: -0.5px;
+        }
 
-.content{
-padding:20px;
-}
+        .search-container {
+            max-width: 550px;
+            margin: 0 auto 40px;
+            position: relative;
+            width: 90%;
+        }
+        .search-container i {
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            color: var(--gold); font-size: 1.1rem;
+        }
+        .search {
+            width: 100%;
+            padding: 16px 20px 16px 55px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: var(--white);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .search:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+        }
 
-.content h3{
-margin-bottom:10px;
-}
+        .products {
+            padding: 20px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.price{
-font-size:24px;
-color:var(--gold);
-font-weight:bold;
-margin:10px 0;
-}
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+        }
 
-.buy{
-background:var(--gold);
-color:black;
-border:none;
-padding:12px;
-width:100%;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,175,55,0.4);
+        }
 
-.testimonials{
-padding:50px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
+        .img-wrapper {
+            width: 100%; height: 210px; overflow: hidden; position: relative;
+        }
+        .card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card:hover img { transform: scale(1.05); }
 
-.testimonial{
-background:var(--card);
-padding:25px;
-border-radius:15px;
-}
+        .content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
 
-.faq{
-padding:50px 5%;
-}
+        .content h3 {
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .content p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
 
-details{
-background:var(--card);
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-}
+        .price {
+            font-size: 26px;
+            color: var(--gold);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
 
-footer{
-background:#111;
-padding:40px;
-text-align:center;
-margin-top:50px;
-}
+        .buy {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
 
-.cart{
-position:fixed;
-top:90px;
-right:20px;
-background:var(--gold);
-color:black;
-padding:15px;
-border-radius:10px;
-font-weight:bold;
-z-index:999;
-}
+        .buy:hover { background: var(--gold-hover); }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-width:60px;
-height:60px;
-background:#25D366;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-font-size:30px;
-color:white;
-text-decoration:none;
-}
+        .no-results {
+            grid-column: 1 / -1; text-align: center; padding: 40px;
+            font-size: 1.1rem; color: var(--text); display: none;
+        }
 
-.dark-toggle{
-cursor:pointer;
-font-size:22px;
-color:var(--gold);
-}
-</style>
+        /* --- OPINIONES --- */
+        .testimonials {
+            padding: 20px 5% 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .stars { color: var(--gold); margin-bottom: 12px; font-size: 0.9rem; }
+        .testimonial p { font-style: italic; line-height: 1.6; margin-bottom: 15px; }
+        .testimonial b { color: var(--white); font-size: 0.95rem; }
+
+        /* --- FAQ --- */
+        .faq { padding: 20px 5% 60px; max-width: 750px; margin: 0 auto; }
+        details {
+            background: var(--card);
+            padding: 18px 22px;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+        summary { font-weight: 700; color: var(--white); font-size: 1.05rem; outline: none; }
+        details p { padding-top: 12px; line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- SIDEBAR PANEL CARRITO --- */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px; height: 100%;
+            background: var(--card); border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
+        }
+        .cart-sidebar.open { right: 0; }
+        
+        .cart-header { padding: 25px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { font-size: 1.3rem; font-weight: 800; color: var(--white); }
+        .close-cart { font-size: 1.8rem; cursor: pointer; color: var(--white); border: none; background: none; }
+        
+        .cart-items-wrapper { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-weight: 700; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
+        .cart-item-price { color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+        
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.15); border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; }
+        .cart-qty-btn { background: transparent; border: none; color: var(--white); cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .cart-qty-num { font-size: 0.9rem; font-weight: 700; color: var(--white); min-width: 15px; text-align: center; }
+
+        .cart-form { padding: 20px 25px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+        .form-input { width: 100%; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-size: 0.9rem; outline: none; }
+        .form-input:focus { border-color: var(--gold); }
+
+        .cart-footer { padding: 25px; border-top: 1px solid var(--border); }
+        .total-main { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 800; font-size: 1.25rem; color: var(--white); }
+        .checkout-btn { width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2); }
+        .checkout-btn:hover { background: #1eb855; }
+
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
+        .cart-overlay.open { display: block; }
+
+        /* --- FOOTER Y FLOATING --- */
+        footer { background: #111; padding: 40px 20px; text-align: center; margin-top: 8px; border-top: 1px solid var(--border); }
+        footer h3 { color: var(--gold); margin-bottom: 10px; font-weight: 800; }
+        footer p { font-size: 0.9rem; }
+
+        .whatsapp-fixed {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: var(--whatsapp); display: flex; justify-content: center; align-items: center;
+            border-radius: 50%; font-size: 28px; color: white; text-decoration: none; z-index: 998;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: 0.3s;
+        }
+        .whatsapp-fixed:hover { transform: scale(1.08); }
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 38px; }
+            nav { display: none; }
+            .cart-sidebar { max-width: 100%; right: -100%; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<div class="logo">📚 Manuales Premium</div>
-<nav>
-<a href="#catalogo">Catálogo</a>
-<a href="#opiniones">Opiniones</a>
-<a href="#faq">FAQ</a>
-</nav>
-<div class="dark-toggle" onclick="toggleDark()">
-<i class="fas fa-moon"></i>
-</div>
-</header>
+    <header>
+        <div class="logo">📚 Manuales Premium</div>
+        <div class="nav-actions">
+            <nav>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#opiniones">Opiniones</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="dark-toggle" onclick="toggleDark()">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </div>
+            <button class="cart-trigger" id="open-cart-btn">
+                <i class="fa-solid fa-basket-shopping"></i> Pedido
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
 
-<div class="cart">
-🛒 <span id="cartCount">0</span>
-</div>
+    <div class="cart-overlay" id="cart-overlay"></div>
 
-<section class="hero">
-<h1>Manuales Premium</h1>
-<p>
-Aprende habilidades que generan ingresos.
-Manuales digitales profesionales para estudiar desde cualquier lugar.
-</p>
-<a href="#catalogo" class="btn">Ver Catálogo</a>
-</section>
+    <!-- PANEL LATERAL DEL CARRITO -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fa-solid fa-basket-shopping"></i> Tus Manuales</h2>
+            <button class="close-cart" id="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items-wrapper" id="cart-items-container">
+            <!-- Renderizado dinámico -->
+        </div>
+        <div class="cart-form">
+            <input type="text" id="cust-name" placeholder="Tu Nombre Completo" class="form-input">
+            <select id="cust-method" class="form-input">
+                <option value="Yape">Yape</option>
+                <option value="Plin">Plin</option>
+                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+            </select>
+        </div>
+        <div class="cart-footer">
+            <div class="total-main">
+                <span>Total a pagar:</span>
+                <span id="cartTotal">S/ 0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="sendOrderWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Solicitar Acceso Inmediato
+            </button>
+        </div>
+    </div>
 
-<section class="stats">
-<div class="stat">
-<h2>500+</h2>
-<p>Clientes</p>
-</div>
+    <section class="hero">
+        <h1>Aprende Habilidades que <span>Generan Ingresos</span></h1>
+        <p>Manuales digitales estructurados profesionalmente para optimizar tu curva de aprendizaje y estudiar desde cualquier dispositivo.</p>
+        <a href="#catalogo" class="btn">Explorar Catálogo</a>
+    </section>
 
-<div class="stat">
-<h2>10</h2>
-<p>Manuales</p>
-</div>
+    <section class="stats">
+        <div class="stat">
+            <h2>500+</h2>
+            <p>Alumnos Activos</p>
+        </div>
+        <div class="stat">
+            <h2>10</h2>
+            <p>Guías Pro</p>
+        </div>
+        <div class="stat">
+            <h2>98%</h2>
+            <p>Casos de Éxito</p>
+        </div>
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Envío Digital</p>
+        </div>
+    </section>
 
-<div class="stat">
-<h2>98%</h2>
-<p>Satisfacción</p>
-</div>
+    <h2 class="section-title" id="catalogo">Catálogo de Guías Premium</h2>
 
-<div class="stat">
-<h2>24/7</h2>
-<p>Soporte</p>
-</div>
-</section>
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="search" placeholder="¿Qué habilidad deseas dominar hoy?..." id="search">
+    </div>
 
-<h2 class="section-title" id="catalogo">Catálogo Premium</h2>
+    <section class="products" id="products">
 
-<input type="text" class="search" placeholder="Buscar manual..." id="search">
+        <div class="card" data-title="Inteligencia Artificial" data-price="19.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?1" alt="Guía IA"></div>
+            <div class="content">
+                <h3>Inteligencia Artificial</h3>
+                <p>Domina prompts, automatizaciones y modelos LLM desde cero de manera práctica.</p>
+                <div class="price">S/ 19.90</div>
+                <button class="buy" onclick="addToCart('Inteligencia Artificial', 19.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<section class="products" id="products">
+        <div class="card" data-title="Excel Avanzado" data-price="14.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?2" alt="Excel"></div>
+            <div class="content">
+                <h3>Excel Avanzado</h3>
+                <p>Tablas dinámicas, macros, modelado de datos dashboards profesionales.</p>
+                <div class="price">S/ 14.90</div>
+                <button class="buy" onclick="addToCart('Excel Avanzado', 14.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?1">
-<div class="content">
-<h3>Inteligencia Artificial</h3>
-<p>Aprende IA desde cero.</p>
-<div class="price">S/19.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Marketing Digital" data-price="24.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?3" alt="Marketing"></div>
+            <div class="content">
+                <h3>Marketing Digital</h3>
+                <p>Estrategias avanzadas de pauta publicitaria en Meta Ads, Google y Growth.</p>
+                <div class="price">S/ 24.90</div>
+                <button class="buy" onclick="addToCart('Marketing Digital', 24.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?2">
-<div class="content">
-<h3>Excel Avanzado</h3>
-<div class="price">S/14.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Programación Web" data-price="29.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?4" alt="Web"></div>
+            <div class="content">
+                <h3>Programación Web</h3>
+                <p>Construye aplicaciones web modernas con HTML5, CSS3, JavaScript y lógica estructurada.</p>
+                <div class="price">S/ 29.90</div>
+                <button class="buy" onclick="addToCart('Programación Web', 29.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?3">
-<div class="content">
-<h3>Marketing Digital</h3>
-<div class="price">S/24.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Diseño Gráfico" data-price="17.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?5" alt="Diseño"></div>
+            <div class="content">
+                <h3>Diseño Gráfico</h3>
+                <p>Composición visual, teoría del color y herramientas líderes del mercado publicitario.</p>
+                <div class="price">S/ 17.90</div>
+                <button class="buy" onclick="addToCart('Diseño Gráfico', 17.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?4">
-<div class="content">
-<h3>Programación Web</h3>
-<div class="price">S/29.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Criptomonedas" data-price="21.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?6" alt="Crypto"></div>
+            <div class="content">
+                <h3>Criptomonedas</h3>
+                <p>Fundamentos de Blockchain, análisis técnico seguro y gestión de carteras digitales.</p>
+                <div class="price">S/ 21.90</div>
+                <button class="buy" onclick="addToCart('Criptomonedas', 21.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?5">
-<div class="content">
-<h3>Diseño Gráfico</h3>
-<div class="price">S/17.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Negocios Online" data-price="18.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?7" alt="Negocios"></div>
+            <div class="content">
+                <h3>Negocios Online</h3>
+                <p>Modelos de monetización digital escalables y metodologías ágiles de validación.</p>
+                <div class="price">S/ 18.90</div>
+                <button class="buy" onclick="addToCart('Negocios Online', 18.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?6">
-<div class="content">
-<h3>Criptomonedas</h3>
-<div class="price">S/21.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Inglés Básico" data-price="12.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?8" alt="Inglés"></div>
+            <div class="content">
+                <h3>Inglés Básico</h3>
+                <p>Estructura comunicativa esencial y vocabulario orientado al ecosistema laboral global.</p>
+                <div class="price">S/ 12.90</div>
+                <button class="buy" onclick="addToCart('Inglés Básico', 12.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?7">
-<div class="content">
-<h3>Negocios Online</h3>
-<div class="price">S/18.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Cocina Profesional" data-price="15.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?9" alt="Cocina"></div>
+            <div class="content">
+                <h3>Cocina Profesional</h3>
+                <p>Técnicas culinarias fundamentales de vanguardia internacionales y manejo de insumos.</p>
+                <div class="price">S/ 15.90</div>
+                <button class="buy" onclick="addToCart('Cocina Profesional', 15.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?8">
-<div class="content">
-<h3>Inglés Básico</h3>
-<div class="price">S/12.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="card" data-title="Reparación de Celulares" data-price="34.90">
+            <div class="img-wrapper"><img src="https://picsum.photos/400/300?10" alt="Celulares"></div>
+            <div class="content">
+                <h3>Reparación de Celulares</h3>
+                <p>Diagnóstico electrónico avanzado de hardware, micro-soldadura y mantenimiento modular.</p>
+                <div class="price">S/ 34.90</div>
+                <button class="buy" onclick="addToCart('Reparación de Celulares', 34.90)">Agregar al Pedido</button>
+            </div>
+        </div>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?9">
-<div class="content">
-<h3>Cocina Profesional</h3>
-<div class="price">S/15.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+        <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
+    </section>
 
-<div class="card">
-<img src="https://picsum.photos/400/300?10">
-<div class="content">
-<h3>Reparación de Celulares</h3>
-<div class="price">S/34.90</div>
-<button class="buy">Agregar</button>
-</div>
-</div>
+    <h2 class="section-title" id="opiniones">Opiniones de Estudiantes</h2>
 
-</section>
+    <section class="testimonials">
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>Excelente contenido pedagógico, directo al grano y sumamente fácil de asimilar.</p>
+            <b>Carlos M.</b>
+        </div>
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>Soporte de envío inmediato. El formato PDF es perfecto para leer en tablets.</p>
+            <b>Ana P.</b>
+        </div>
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>Altamente recomendado si buscas capacitarte sin rellenos teóricos extensos.</p>
+            <b>José R.</b>
+        </div>
+    </section>
 
-<h2 class="section-title" id="opiniones">Opiniones</h2>
+    <h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
 
-<section class="testimonials">
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Excelente contenido, muy fácil de entender.</p>
-<b>Carlos M.</b>
-</div>
+    <section class="faq">
+        <details>
+            <summary>¿Cómo recibo el manual?</summary>
+            <p>Tras verificar tu comprobante de pago por nuestro canal corporativo, se te envía un enlace directo de descarga en formato PDF de alta resolución listo para cualquier dispositivo móvil u ordenador.</p>
+        </details>
+        <details>
+            <summary>¿Qué métodos de pago aceptan?</summary>
+            <p>Aceptamos transacciones directas mediante Yape, Plin y transferencias interbancarias directas sin comisiones.</p>
+        </details>
+        <details>
+            <summary>¿Los manuales expiran o requieren suscripción?</summary>
+            <p>No. Realizas un único pago por cada manual y el archivo te pertenece de forma vitalicia para consultas ilimitadas.</p>
+        </details>
+    </section>
 
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Recibí el manual inmediatamente.</p>
-<b>Ana P.</b>
-</div>
+    <footer>
+        <h3>📚 Manuales Premium</h3>
+        <p style="margin-bottom: 10px;">Formación Profesional Autogestionada de Alta Gama</p>
+        <p>© 2026 Todos los derechos reservados.</p>
+    </footer>
 
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Muy recomendado para aprender rápido.</p>
-<b>José R.</b>
-</div>
-</section>
+    <a class="whatsapp-fixed" href="https://wa.me/51959493921?text=Hola,%20deseo%20información%20sobre%20los%20manuales%20digitales." target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
+    <script>
+        // Inicialización Segura del Carrito
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem("manuales_cart")) || [];
+            if(!Array.isArray(cart)) cart = [];
+        } catch(e) {
+            cart = [];
+        }
 
-<section class="faq">
-<details>
-<summary>¿Cómo recibo el manual?</summary>
-<p>Después del pago recibirás el PDF por WhatsApp.</p>
-</details>
+        // Sidebar de Carrito
+        const sidebar = document.getElementById('cart-sidebar');
+        const overlay = document.getElementById('cart-overlay');
+        
+        document.getElementById('open-cart-btn').addEventListener('click', () => {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+        });
 
-<details>
-<summary>¿Qué métodos de pago aceptan?</summary>
-<p>Yape, Plin y Transferencia Bancaria.</p>
-</details>
+        const closeCartFunc = () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        };
 
-<details>
-<summary>¿Los manuales son digitales?</summary>
-<p>Sí, todos son descargables.</p>
-</details>
-</section>
+        document.getElementById('close-cart-btn').addEventListener('click', closeCartFunc);
+        overlay.addEventListener('click', closeCartFunc);
 
-<footer>
-<h3>📚 Manuales Premium</h3>
-<p>WhatsApp: 959493921</p>
-<p>© 2026 Todos los derechos reservados</p>
-</footer>
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if(existing) {
+                if(existing.qty < 5) existing.qty += 1; // Unidades lógicas máximas para guías digitales
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            saveCart();
+        }
 
-<a class="whatsapp"
-href="https://wa.me/51959493921"
-target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
+        function changeQty(name, change) {
+            const item = cart.find(item => item.name === name);
+            if(item) {
+                item.qty += change;
+                if(item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+                saveCart();
+            }
+        }
 
-<script>
-let cart=0;
+        function saveCart() {
+            try {
+                localStorage.setItem("manuales_cart", JSON.stringify(cart));
+            } catch(e) {
+                console.error("Storage bloqueado o lleno");
+            }
+            updateCartUI();
+        }
 
-document.querySelectorAll(".buy").forEach(btn=>{
-btn.addEventListener("click",()=>{
-cart++;
-document.getElementById("cartCount").innerText=cart;
-localStorage.setItem("cart",cart);
-});
-});
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const badge = document.getElementById('cartCount');
+            const totalEl = document.getElementById('cartTotal');
+            
+            container.innerHTML = '';
+            let total = 0;
+            let count = 0;
 
-window.onload=()=>{
-let saved=localStorage.getItem("cart");
-if(saved){
-cart=saved;
-document.getElementById("cartCount").innerText=saved;
-}
-};
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; padding: 30px 0; font-size:0.95rem;">El carrito está vacío.</p>`;
+            }
 
-document.getElementById("search").addEventListener("keyup",function(){
-let value=this.value.toLowerCase();
-let cards=document.querySelectorAll(".card");
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
 
-cards.forEach(card=>{
-card.style.display=
-card.innerText.toLowerCase().includes(value)
-? "block":"none";
-});
-});
+                const itemEl = document.createElement('div');
+                itemEl.classList.add('cart-item');
+                itemEl.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">S/ ${(item.price * item.qty).toFixed(2)}</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="cart-qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                        <span class="cart-qty-num">${item.qty}</span>
+                        <button class="cart-qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
 
-function toggleDark(){
-document.body.classList.toggle("light");
-}
-</script>
+            badge.innerText = count;
+            totalEl.innerText = `S/ ${total.toFixed(2)}`;
+        }
 
+        // Buscador Pro y Filtrado Sensible
+        document.getElementById("search").addEventListener("keyup", function() {
+            const val = this.value.toLowerCase().trim();
+            const cards = document.querySelectorAll(".card");
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if(text.includes(val)) {
+                    card.style.display = "flex";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById('no-results').style.display = (visibleCount === 0) ? "block" : "none";
+        });
+
+        // Sanitización para cadenas de WhatsApp
+        function sanitize(str) {
+            return str.replace(/[&<>"'/\\*_\n]/g, '').trim();
+        }
+
+        // Despacho de Orden vía WhatsApp Link Generator
+        function sendOrderWhatsApp() {
+            if(cart.length === 0) {
+                alert("Agrega al menos una guía a tu carrito de compras.");
+                return;
+            }
+
+            const rawName = document.getElementById('cust-name').value;
+            const method = document.getElementById('cust-method').value;
+            const name = sanitize(rawName);
+
+            if(!name) {
+                alert("Por favor ingresa tu nombre completo para personalizar tu acceso.");
+                return;
+            }
+
+            let msg = "📚 *NUEVA SOLICITUD DE ACCESO - MANUALES PREMIUM*\n";
+            msg += "========================================\n\n";
+            msg += `👤 *CLIENTE:* ${name}\n`;
+            msg += `💳 *MÉTODO DE PAGO:* ${method}\n\n`;
+            msg += "========================================\n";
+            msg += "📖 *MANUALES SOLICITADOS:* \n\n";
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                let sub = item.price * item.qty;
+                total += sub;
+                msg += `*${index + 1}.* ${item.name} (x${item.qty}) -> S/ ${sub.toFixed(2)}\n`;
+            });
+
+            msg += "\n========================================\n";
+            msg += `💰 *TOTAL GENERAL: S/ ${total.toFixed(2)}*\n\n`;
+            msg += "Por favor, compártenme los datos de validación para realizar el abono correspondiente y recibir el material. ¡Gracias!";
+
+            const targetNum = "51959493921";
+            window.open(`https://wa.me/${targetNum}?text=${encodeURIComponent(msg)}`, '_blank');
+
+            // Limpieza controlada post-compra
+            setTimeout(() => {
+                if(confirm("¿Se abrió correctamente el chat de WhatsApp? Confirma para limpiar tu lista de solicitudes.")) {
+                    cart = [];
+                    document.getElementById('cust-name').value = '';
+                    saveCart();
+                    closeCartFunc();
+                }
+            }, 1200);
+        }
+
+        // Sistema de Toggle de Preferencia de Color (Dark/Light Mode Corregido)
+        function toggleDark() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            body.classList.toggle("light");
+            
+            if(body.classList.contains("light")) {
+                icon.className = "fas fa-sun";
+                localStorage.setItem("theme", "light");
+            } else {
+                icon.className = "fas fa-moon";
+                localStorage.setItem("theme", "dark");
+            }
+        }
+
+        // Carga inicial del Tema y UI
+        window.onload = () => {
+            updateCartUI();
+            if(localStorage.getItem("theme") === "light") {
+                document.body.classList.add("light");
+                document.getElementById('theme-icon').className = "fas fa-sun";
+            }
+        };
+    </script>
 </body>
 </html>
