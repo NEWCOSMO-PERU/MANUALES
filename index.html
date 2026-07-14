@@ -417,12 +417,27 @@
             nav { display: none; }
             .cart-sidebar { max-width: 100%; right: -100%; }
         }
-    </style>
+    
+#splash{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:99999;transition:opacity 1s}
+#splash.fade{opacity:0;pointer-events:none}
+#splash img{width:180px;animation:pop 1.2s ease}
+#splash h1{color:#d4af37}
+.bar{width:260px;height:8px;background:#333;border-radius:20px;overflow:hidden}.fill{height:100%;background:#d4af37;width:0;animation:load 3s forwards}
+@keyframes load{to{width:100%}}@keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+.logo img{height:52px;vertical-align:middle;margin-right:10px}
+</style>
 </head>
 <body>
 
+<div id="splash">
+<img src="logo(1).png" alt="logo">
+<h1>Bienvenido a NEWCOSMO</h1>
+<div class="bar"><div class="fill"></div></div>
+</div>
+
+
     <header>
-        <div class="logo">📚 Manuales Premium</div>
+        <div class="logo"><img src="logo(1).png">NEWCOSMO</div>
         <div class="nav-actions">
             <nav>
                 <a href="#catalogo">Catálogo</a>
@@ -835,7 +850,7 @@
         }
 
         // Carga inicial del Tema y UI
-        window.onload = () => {
+        window.onload = () => {setTimeout(()=>document.getElementById('splash').classList.add('fade'),3200);
             updateCartUI();
             if(localStorage.getItem("theme") === "light") {
                 document.body.classList.add("light");
