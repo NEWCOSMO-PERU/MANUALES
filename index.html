@@ -146,36 +146,48 @@
             font-weight: bold;
         }
 
-        /* --- HERO CON BRILLO --- */
+        /* --- HERO CON LOGO BRILLANTE --- */
         .hero {
-            padding: 110px 5% 80px;
+            padding: 100px 5% 80px;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.12) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(212,175,55,0.15) 0%, transparent 70%);
         }
 
-        .hero h1 {
-            font-size: 52px;
-            color: var(--text-title);
-            font-weight: 800;
+        .hero-logo-container {
+            display: inline-block;
             margin-bottom: 20px;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
+            position: relative;
         }
-        .hero h1 span { 
-            color: var(--gold); 
-            text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+
+        .hero-logo {
+            width: 220px;
+            max-width: 80vw;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% {
+                filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)) scale(1);
+            }
+            100% {
+                filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.8)) scale(1.02);
+            }
         }
 
         .hero p {
             font-size: 1.15rem;
             max-width: 650px;
-            margin: auto;
+            margin: 0 auto 10px;
             line-height: 1.6;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 25px;
             padding: 16px 36px;
             background: var(--gold);
             color: #000;
@@ -494,7 +506,6 @@
         .whatsapp-fixed:hover { transform: scale(1.1); }
 
         @media(max-width: 768px) {
-            .hero h1 { font-size: 38px; }
             nav { display: none; }
             .cart-sidebar { max-width: 100%; right: -100%; }
             .footer-bottom { flex-direction: column; text-align: center; }
@@ -575,7 +586,9 @@
 </div>
 
 <section class="hero">
-    <h1>Aprende Habilidades que <span>Generan Ingresos</span></h1>
+    <div class="hero-logo-container">
+        <img src="logo.png" alt="NEWCOSMO Logo" class="hero-logo">
+    </div>
     <p>Manuales digitales estructurados profesionalmente para optimizar tu curva de aprendizaje y estudiar desde cualquier dispositivo.</p>
     <a href="#catalogo" class="btn">Explorar Catálogo</a>
 </section>
