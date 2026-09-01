@@ -362,10 +362,10 @@
             font-size: 1.1rem; color: var(--text); display: none;
         }
 
-        /* --- NUEVA TARJETA VIP DE PAGO ÚNICO (CENTRADA SOBRE EL FOOTER) --- */
+        /* --- TARJETA VIP DE PAGO ÚNICO (CENTRADA SOBRE LAS PREGUNTAS FRECUENTES) --- */
         .ultimate-vip-container {
             max-width: 900px;
-            margin: 90px auto 30px auto;
+            margin: 70px auto 40px auto;
             padding: 0 5%;
             display: flex;
             justify-content: center;
@@ -392,7 +392,6 @@
             box-shadow: 0 0 70px rgba(212, 175, 55, 0.4), 0 25px 50px rgba(0,0,0,0.8);
         }
 
-        /* Efecto destello decorativo interno */
         .card.ultimate-vip::before {
             content: '';
             position: absolute;
@@ -522,35 +521,9 @@
                 justify-content: center;
             }
             .vip-badge-ribbon {
-                display: none; /* Ocultar ribbon en pantallas muy pequeñas para evitar cortes */
+                display: none;
             }
         }
-
-        /* --- OPINIONES --- */
-        .testimonials {
-            padding: 20px 5% 50px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial {
-            background: var(--card);
-            padding: 30px;
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-        }
-        .testimonial:hover {
-            border-color: rgba(212,175,55,0.3);
-            box-shadow: 0 0 20px rgba(212,175,55,0.1);
-        }
-        .stars { color: var(--gold); margin-bottom: 12px; font-size: 0.9rem; text-shadow: 0 0 8px rgba(212,175,55,0.4); }
-        .testimonial p { font-style: italic; line-height: 1.6; margin-bottom: 15px; }
-        .testimonial b { color: var(--white); font-size: 0.95rem; }
 
         /* --- FAQ --- */
         .faq { padding: 20px 5% 60px; max-width: 750px; margin: 0 auto; }
@@ -690,7 +663,6 @@
     <div class="nav-actions">
         <nav>
             <a href="#catalogo">Catálogo</a>
-            <a href="#opiniones">Opiniones</a>
             <a href="#faq">FAQ</a>
         </nav>
         <div class="dark-toggle" onclick="toggleDark()">
@@ -873,44 +845,7 @@
     <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
 </section>
 
-<h2 class="section-title" id="opiniones">Opiniones de Estudiantes</h2>
-
-<section class="testimonials">
-    <div class="testimonial">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Excelente contenido pedagógico, directo al grano y sumamente fácil de asimilar.</p>
-        <b>Carlos M.</b>
-    </div>
-    <div class="testimonial">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Soporte de envío inmediato. El formato PDF es perfecto para leer en tablets.</p>
-        <b>Ana P.</b>
-    </div>
-    <div class="testimonial">
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-        <p>Altamente recomendado si buscas capacitarte sin rellenos teóricos extensos.</p>
-        <b>José R.</b>
-    </div>
-</section>
-
-<h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
-
-<section class="faq">
-    <details>
-        <summary>¿Cómo recibo el manual o el Pase VIP?</summary>
-        <p>Tras verificar tu comprobante de pago por nuestro canal corporativo, se te envía un enlace directo de descarga en formato PDF de alta resolución listo para cualquier dispositivo móvil u ordenador. Si adquiriste el Pase VIP, obtendrás acceso al repositorio completo.</p>
-    </details>
-    <details>
-        <summary>¿Qué métodos de pago aceptan?</summary>
-        <p>Aceptamos transacciones directas mediante Yape, Plin y transferencias interbancarias directas sin comisiones.</p>
-    </details>
-    <details>
-        <summary>¿Los manuales expiran o requieren suscripción?</summary>
-        <p>De ninguna manera. Ya sea que compres un manual individual o el Pase VIP de Acceso Total, realizas un único pago y el contenido te pertenece de forma vitalicia con actualizaciones incluidas.</p>
-    </details>
-</section>
-
-<!-- TARJETA DE PAGO ÚNICO EXCLUSIVA CENTRADA JUSTO ANTES DEL FOOTER -->
+<!-- TARJETA DE PAGO ÚNICO EXCLUSIVA CENTRADA JUSTO ANTES DE PREGUNTAS FRECUENTES -->
 <div class="ultimate-vip-container">
     <div class="card ultimate-vip" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
         <div class="vip-badge-ribbon">PAGO ÚNICO</div>
@@ -935,6 +870,23 @@
     </div>
 </div>
 
+<h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
+
+<section class="faq">
+    <details>
+        <summary>¿Cómo recibo el manual o el Pase VIP?</summary>
+        <p>Tras verificar tu comprobante de pago por nuestro canal corporativo, se te envía un enlace directo de descarga en formato PDF de alta resolución listo para cualquier dispositivo móvil u ordenador. Si adquiriste el Pase VIP, obtendrás acceso al repositorio completo.</p>
+    </details>
+    <details>
+        <summary>¿Qué métodos de pago aceptan?</summary>
+        <p>Aceptamos transacciones directas mediante Yape, Plin y transferencias interbancarias directas sin comisiones.</p>
+    </details>
+    <details>
+        <summary>¿Los manuales expiran o requieren suscripción?</summary>
+        <p>De ninguna manera. Ya sea que compres un manual individual o el Pase VIP de Acceso Total, realizas un único pago y el contenido te pertenece de forma vitalicia con actualizaciones incluidas.</p>
+    </details>
+</section>
+
 <!-- FOOTER MODERNO -->
 <footer>
     <div class="footer-content">
@@ -951,7 +903,6 @@
             <h3>Accesos Rápidos</h3>
             <ul>
                 <li><a href="#catalogo">Catálogo Completo</a></li>
-                <li><a href="#opiniones">Reseñas de Alumnos</a></li>
                 <li><a href="#faq">Preguntas Frecuentes</a></li>
                 <li><a href="#open-cart-btn">Mi Carrito / Pedido</a></li>
             </ul>
