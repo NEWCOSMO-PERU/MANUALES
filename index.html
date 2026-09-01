@@ -13,15 +13,15 @@
             --gold: #d4af37;
             --gold-hover: #f3cf5a;
             --dark: #0f1115;
-            --card: #1a1f29;
+            --card: #161b22;
             --white: #ffffff;
             --bg: #0b0c10;
             --text: #94a3b8;
             --text-title: #ffffff;
-            --border: rgba(212, 175, 55, 0.15);
-            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --border: rgba(212, 175, 55, 0.18);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
             --whatsapp: #25D366;
-            --overlay: rgba(0,0,0,0.6);
+            --overlay: rgba(0,0,0,0.7);
         }
 
         .light {
@@ -57,7 +57,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%;
             z-index: 1000;
-            background: rgba(17, 17, 17, 0.85);
+            background: rgba(15, 17, 21, 0.85);
             backdrop-filter: blur(12px);
             padding: 15px 5%;
             display: flex;
@@ -72,13 +72,14 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--gold);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
         }
+        .logo img { height: 42px; vertical-align: middle; margin-right: 10px; }
 
         nav {
             display: flex;
@@ -145,22 +146,25 @@
             font-weight: bold;
         }
 
-        /* --- HERO --- */
+        /* --- HERO CON BRILLO --- */
         .hero {
-            padding: 100px 5% 80px;
+            padding: 110px 5% 80px;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(212,175,55,0.12) 0%, transparent 70%);
         }
 
         .hero h1 {
-            font-size: 54px;
+            font-size: 52px;
             color: var(--text-title);
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -1.5px;
             line-height: 1.1;
         }
-        .hero h1 span { color: var(--gold); }
+        .hero h1 span { 
+            color: var(--gold); 
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+        }
 
         .hero p {
             font-size: 1.15rem;
@@ -179,18 +183,18 @@
             border-radius: 12px;
             text-decoration: none;
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 20px rgba(212,175,55,0.15);
+            box-shadow: 0 0 20px rgba(212,175,55,0.3);
         }
 
         .btn:hover {
             background: var(--gold-hover);
             transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(212,175,55,0.25);
+            box-shadow: 0 0 30px rgba(212,175,55,0.5);
         }
 
         /* --- STATS --- */
         .stats {
-            padding: 40px 5%;
+            padding: 20px 5% 50px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
@@ -205,6 +209,11 @@
             text-align: center;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .stat:hover {
+            border-color: rgba(212,175,55,0.4);
+            box-shadow: 0 0 20px rgba(212,175,55,0.15);
         }
 
         .stat h2 {
@@ -212,6 +221,7 @@
             font-size: 38px;
             font-weight: 800;
             margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(212,175,55,0.3);
         }
         .stat p { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -220,9 +230,10 @@
             text-align: center;
             font-size: 36px;
             font-weight: 800;
-            margin: 80px 0 20px;
+            margin: 70px 0 20px;
             color: var(--text-title);
             letter-spacing: -0.5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
         }
 
         .search-container {
@@ -249,7 +260,7 @@
         }
         .search:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+            box-shadow: 0 0 15px rgba(212,175,55,0.25);
         }
 
         .products {
@@ -261,6 +272,7 @@
             margin: 0 auto;
         }
 
+        /* TARJETAS CON EFECTO GLOW Y BRILLO SUTIL */
         .card {
             background: var(--card);
             border-radius: 20px;
@@ -268,13 +280,15 @@
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow);
+            position: relative;
         }
 
         .card:hover {
             transform: translateY(-8px);
-            border-color: rgba(212,175,55,0.4);
+            border-color: rgba(212,175,55,0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         .img-wrapper {
@@ -282,9 +296,9 @@
         }
         .card img {
             width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
-        .card:hover img { transform: scale(1.05); }
+        .card:hover img { transform: scale(1.06); }
 
         .content {
             padding: 24px;
@@ -306,6 +320,7 @@
             color: var(--gold);
             font-weight: 800;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(212,175,55,0.2);
         }
 
         .buy {
@@ -318,14 +333,27 @@
             font-weight: 700;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 0 10px rgba(212,175,55,0.2);
+        }
+        .buy:hover { 
+            background: var(--gold-hover);
+            box-shadow: 0 0 20px rgba(212,175,55,0.4);
         }
 
-        .buy:hover { background: var(--gold-hover); }
+        /* TARJETA ESPECIAL DEL PASE VIP AL FINAL */
+        .card.vip-card {
+            border: 2px solid var(--gold);
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), var(--card));
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .card.vip-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 35px rgba(212, 175, 55, 0.35);
+        }
 
         .no-results {
             grid-column: 1 / -1; text-align: center; padding: 40px;
@@ -348,8 +376,13 @@
             border-radius: 18px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            transition: 0.3s;
         }
-        .stars { color: var(--gold); margin-bottom: 12px; font-size: 0.9rem; }
+        .testimonial:hover {
+            border-color: rgba(212,175,55,0.3);
+            box-shadow: 0 0 20px rgba(212,175,55,0.1);
+        }
+        .stars { color: var(--gold); margin-bottom: 12px; font-size: 0.9rem; text-shadow: 0 0 8px rgba(212,175,55,0.4); }
         .testimonial p { font-style: italic; line-height: 1.6; margin-bottom: 15px; }
         .testimonial b { color: var(--white); font-size: 0.95rem; }
 
@@ -363,14 +396,16 @@
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
             cursor: pointer;
+            transition: 0.3s;
         }
+        details:hover { border-color: rgba(212,175,55,0.3); }
         summary { font-weight: 700; color: var(--white); font-size: 1.05rem; outline: none; }
         details p { padding-top: 12px; line-height: 1.6; font-size: 0.95rem; }
 
         /* --- SIDEBAR PANEL CARRITO --- */
         .cart-sidebar {
             position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px; height: 100%;
-            background: var(--card); border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            background: var(--card); border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(0,0,0,0.3);
             z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
         }
         .cart-sidebar.open { right: 0; }
@@ -395,71 +430,93 @@
 
         .cart-footer { padding: 25px; border-top: 1px solid var(--border); }
         .total-main { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 800; font-size: 1.25rem; color: var(--white); }
-        .checkout-btn { width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2); }
+        .checkout-btn { width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
         .checkout-btn:hover { background: #1eb855; }
 
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
         .cart-overlay.open { display: block; }
 
-        /* --- FOOTER Y FLOATING --- */
-        footer { background: #111; padding: 40px 20px; text-align: center; margin-top: 8px; border-top: 1px solid var(--border); }
-        footer h3 { color: var(--gold); margin-bottom: 10px; font-weight: 800; }
-        footer p { font-size: 0.9rem; }
+        /* --- FOOTER MODERNO --- */
+        footer { 
+            background: #090b0e; 
+            color: var(--text);
+            padding: 60px 5% 30px; 
+            margin-top: 80px; 
+            border-top: 1px solid var(--border); 
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 { 
+            color: var(--gold); 
+            margin-bottom: 15px; 
+            font-weight: 800; 
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(212,175,55,0.2);
+        }
+        .footer-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--gold); padding-left: 5px; }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85rem;
+        }
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a {
+            width: 35px; height: 35px; border-radius: 50%; background: var(--card);
+            border: 1px solid var(--border); color: var(--gold); display: flex;
+            align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;
+        }
+        .social-icons a:hover { background: var(--gold); color: #000; transform: translateY(-3px); }
 
         .whatsapp-fixed {
             position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
             background: var(--whatsapp); display: flex; justify-content: center; align-items: center;
             border-radius: 50%; font-size: 28px; color: white; text-decoration: none; z-index: 998;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); transition: 0.3s;
         }
-        .whatsapp-fixed:hover { transform: scale(1.08); }
+        .whatsapp-fixed:hover { transform: scale(1.1); }
 
         @media(max-width: 768px) {
             .hero h1 { font-size: 38px; }
             nav { display: none; }
             .cart-sidebar { max-width: 100%; right: -100%; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     
         #splash {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            transition: opacity 6s ease;
+            position: fixed; inset: 0; background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 99999; transition: opacity 0.6s ease;
         }
-        #splash.fade {
-            opacity: 0;
-            pointer-events: none;
-        }
-        #splash img {
-            width: 180px;
-            animation: pop 1.2s ease;
-            margin-bottom: 25px;
-        }
+        #splash.fade { opacity: 0; pointer-events: none; }
+        #splash img { width: 160px; animation: pop 1s ease; margin-bottom: 25px; }
         
         .spinner {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border: 4px solid rgba(212, 175, 55, 0.2);
             border-top: 4px solid #d4af37;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pop {
-            0% { transform: scale(.3); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .logo img { height: 52px; vertical-align: middle; margin-right: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pop { 0% { transform: scale(.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -542,7 +599,7 @@
     </div>
 </section>
 
-<h2 class="section-title" id="catalogo">Catálogo de Guías y Pase VIP</h2>
+<h2 class="section-title" id="catalogo">Catálogo de Guías Profesionales</h2>
 
 <div class="search-container">
     <i class="fa-solid fa-magnifying-glass"></i>
@@ -550,21 +607,6 @@
 </div>
 
 <section class="products" id="products">
-
-    <!-- TARJETA DESTACADA: PASE DE ACCESO TOTAL (PAGO ÚNICO) -->
-    <div class="card" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00" style="border: 2px solid var(--gold); background: linear-gradient(135deg, rgba(212,175,55,0.07), var(--card));">
-        <div class="img-wrapper" style="background: var(--gold); display: flex; align-items: center; justify-content: center;">
-            <i class="fa-solid fa-crown" style="font-size: 4rem; color: #000;"></i>
-        </div>
-        <div class="content">
-            <span style="background: rgba(212,175,55,0.2); color: var(--gold); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; width: fit-content; margin-bottom: 8px;">OFERTA RECOMENDADA</span>
-            <h3>Pase VIP Acceso Total</h3>
-            <p>Lleva <b>todos los manuales actuales y futuras actualizaciones</b> de por vida por un único pago. Sin suscripciones.</p>
-            <div style="text-decoration: line-through; font-size: 0.9rem; color: var(--text);">Valor real: S/ 190.00</div>
-            <div class="price">S/ 49.00 <span style="font-size: 0.8rem; font-weight: 500; color: var(--gold);">/ Único Pago</span></div>
-            <button class="buy" onclick="addToCart('Pase VIP Acceso Total', 49.00)" style="background: var(--gold-hover);">Obtener Acceso Total</button>
-        </div>
-    </div>
 
     <!-- Manuales Individuales -->
     <div class="card" data-title="Inteligencia Artificial" data-price="19.90">
@@ -667,6 +709,21 @@
         </div>
     </div>
 
+    <!-- TARJETA DESTACADA: PASE DE ACCESO TOTAL (UBICADA AL FINAL) -->
+    <div class="card vip-card" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
+        <div class="img-wrapper" style="background: var(--gold); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-crown" style="font-size: 4rem; color: #000;"></i>
+        </div>
+        <div class="content">
+            <span style="background: rgba(212,175,55,0.25); color: var(--gold); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; width: fit-content; margin-bottom: 8px;">ACCESO TOTAL RECOMENDADO</span>
+            <h3>Pase VIP Todo Incluido</h3>
+            <p>Llévate <b>todos los manuales actuales y futuras actualizaciones</b> de por vida mediante un único pago. Sin mensualidades.</p>
+            <div style="text-decoration: line-through; font-size: 0.9rem; color: var(--text);">Valor real: S/ 190.00</div>
+            <div class="price">S/ 49.00 <span style="font-size: 0.8rem; font-weight: 600; color: var(--gold);">/ Único Pago</span></div>
+            <button class="buy" onclick="addToCart('Pase VIP Acceso Total', 49.00)" style="background: var(--gold-hover);">Obtener Pase VIP Vitalicio</button>
+        </div>
+    </div>
+
     <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
 </section>
 
@@ -707,10 +764,37 @@
     </details>
 </section>
 
+<!-- FOOTER MODERNO -->
 <footer>
-    <h3>📚 Manuales Premium</h3>
-    <p style="margin-bottom: 10px;">Formación Profesional Autogestionada de Alta Gama</p>
-    <p>© 2026 Todos los derechos reservados.</p>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>NEWCOSMO</h3>
+            <p>Plataforma líder en manuales de formación autogestionada de alta gama. Adquiere conocimientos prácticos orientados a resultados económicos reales.</p>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/51959493921" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h3>Accesos Rápidos</h3>
+            <ul>
+                <li><a href="#catalogo">Catálogo Completo</a></li>
+                <li><a href="#opiniones">Reseñas de Alumnos</a></li>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="#open-cart-btn">Mi Carrito / Pedido</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Soporte Comercial</h3>
+            <p><i class="fa-solid fa-headset" style="color: var(--gold); margin-right: 8px;"></i> Atención automatizada y humana vía WhatsApp las 24 horas.</p>
+            <p><i class="fa-solid fa-shield-halved" style="color: var(--gold); margin-right: 8px;"></i> Transacciones y descargas 100% seguras y garantizadas.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 NEWCOSMO - Todos los derechos reservados.</p>
+        <p>Diseñado para potenciar el talento digital.</p>
+    </div>
 </footer>
 
 <a class="whatsapp-fixed" href="https://wa.me/51959493921?text=Hola,%20deseo%20información%20sobre%20los%20manuales%20digitales." target="_blank" rel="noopener">
@@ -899,7 +983,7 @@
 
     // Carga inicial del Tema y UI
     window.onload = () => {
-        setTimeout(() => document.getElementById('splash').classList.add('fade'), 2000);
+        setTimeout(() => document.getElementById('splash').classList.add('fade'), 1500);
         updateCartUI();
         if(localStorage.getItem("theme") === "light") {
             document.body.classList.add("light");
