@@ -284,7 +284,7 @@
             margin: 0 auto;
         }
 
-        /* TARJETAS CON EFECTO GLOW Y BRILLO SUTIL */
+        /* TARJETAS NORMALES */
         .card {
             background: var(--card);
             border-radius: 20px;
@@ -357,19 +357,173 @@
             box-shadow: 0 0 20px rgba(212,175,55,0.4);
         }
 
-        /* TARJETA ESPECIAL DEL PASE VIP AL FINAL */
-        .card.vip-card {
-            border: 2px solid var(--gold);
-            background: linear-gradient(135deg, rgba(212,175,55,0.08), var(--card));
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
-        }
-        .card.vip-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 35px rgba(212, 175, 55, 0.35);
-        }
-
         .no-results {
             grid-column: 1 / -1; text-align: center; padding: 40px;
             font-size: 1.1rem; color: var(--text); display: none;
+        }
+
+        /* --- NUEVA TARJETA VIP DE PAGO ÚNICO (CENTRADA SOBRE EL FOOTER) --- */
+        .ultimate-vip-container {
+            max-width: 900px;
+            margin: 90px auto 30px auto;
+            padding: 0 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card.ultimate-vip {
+            width: 100%;
+            background: linear-gradient(145deg, #161b22, #0d1117);
+            border: 2px solid var(--gold);
+            border-radius: 28px;
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25), 0 20px 40px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card.ultimate-vip:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 70px rgba(212, 175, 55, 0.4), 0 25px 50px rgba(0,0,0,0.8);
+        }
+
+        /* Efecto destello decorativo interno */
+        .card.ultimate-vip::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .vip-badge-ribbon {
+            position: absolute;
+            top: 25px; right: -35px;
+            background: var(--gold);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 6px 40px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .vip-icon-box {
+            min-width: 130px; height: 130px;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.05) 100%);
+            border: 2px solid rgba(212,175,55,0.5);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem; color: var(--gold);
+            box-shadow: 0 0 25px rgba(212,175,55,0.3);
+            flex-shrink: 0;
+            animation: vipPulse 3s infinite alternate;
+        }
+
+        @keyframes vipPulse {
+            0% { box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+            100% { box-shadow: 0 0 35px rgba(212,175,55,0.5); }
+        }
+
+        .vip-info-content {
+            flex-grow: 1;
+            z-index: 1;
+        }
+
+        .vip-info-content h3 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .vip-info-content p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .vip-pricing-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .vip-old-price {
+            text-decoration: line-through;
+            font-size: 1.1rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        .vip-price {
+            font-size: 38px;
+            color: var(--gold);
+            font-weight: 900;
+            text-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        .vip-badge-tag {
+            background: rgba(212,175,55,0.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .btn-vip-action {
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+            color: #000;
+            border: none;
+            padding: 16px 32px;
+            width: 100%;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 0 25px rgba(212,175,55,0.4);
+        }
+
+        .btn-vip-action:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(212,175,55,0.7);
+        }
+
+        @media(max-width: 768px) {
+            nav { display: none; }
+            .cart-sidebar { max-width: 100%; right: -100%; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            
+            .card.ultimate-vip {
+                flex-direction: column;
+                text-align: center;
+                padding: 35px 20px;
+                gap: 20px;
+            }
+            .vip-pricing-row {
+                justify-content: center;
+            }
+            .vip-badge-ribbon {
+                display: none; /* Ocultar ribbon en pantallas muy pequeñas para evitar cortes */
+            }
         }
 
         /* --- OPINIONES --- */
@@ -453,7 +607,7 @@
             background: #090b0e; 
             color: var(--text);
             padding: 60px 5% 30px; 
-            margin-top: 80px; 
+            margin-top: 60px; 
             border-top: 1px solid var(--border); 
         }
         .footer-content {
@@ -504,12 +658,6 @@
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); transition: 0.3s;
         }
         .whatsapp-fixed:hover { transform: scale(1.1); }
-
-        @media(max-width: 768px) {
-            nav { display: none; }
-            .cart-sidebar { max-width: 100%; right: -100%; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-        }
     
         #splash {
             position: fixed; inset: 0; background: #000;
@@ -722,21 +870,6 @@
         </div>
     </div>
 
-    <!-- TARJETA DESTACADA: PASE DE ACCESO TOTAL (UBICADA AL FINAL) -->
-    <div class="card vip-card" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
-        <div class="img-wrapper" style="background: var(--gold); display: flex; align-items: center; justify-content: center;">
-            <i class="fa-solid fa-crown" style="font-size: 4rem; color: #000;"></i>
-        </div>
-        <div class="content">
-            <span style="background: rgba(212,175,55,0.25); color: var(--gold); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; width: fit-content; margin-bottom: 8px;">ACCESO TOTAL RECOMENDADO</span>
-            <h3>Pase VIP Todo Incluido</h3>
-            <p>Llévate <b>todos los manuales actuales y futuras actualizaciones</b> de por vida mediante un único pago. Sin mensualidades.</p>
-            <div style="text-decoration: line-through; font-size: 0.9rem; color: var(--text);">Valor real: S/ 190.00</div>
-            <div class="price">S/ 49.00 <span style="font-size: 0.8rem; font-weight: 600; color: var(--gold);">/ Único Pago</span></div>
-            <button class="buy" onclick="addToCart('Pase VIP Acceso Total', 49.00)" style="background: var(--gold-hover);">Obtener Pase VIP Vitalicio</button>
-        </div>
-    </div>
-
     <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
 </section>
 
@@ -776,6 +909,31 @@
         <p>De ninguna manera. Ya sea que compres un manual individual o el Pase VIP de Acceso Total, realizas un único pago y el contenido te pertenece de forma vitalicia con actualizaciones incluidas.</p>
     </details>
 </section>
+
+<!-- TARJETA DE PAGO ÚNICO EXCLUSIVA CENTRADA JUSTO ANTES DEL FOOTER -->
+<div class="ultimate-vip-container">
+    <div class="card ultimate-vip" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
+        <div class="vip-badge-ribbon">PAGO ÚNICO</div>
+        <div class="vip-icon-box">
+            <i class="fa-solid fa-crown"></i>
+        </div>
+        <div class="vip-info-content">
+            <span class="vip-badge-tag"><i class="fa-solid fa-star"></i> ACCESO TOTAL VITALICIO</span>
+            <h3 style="margin-top: 8px;">Pase VIP Todo Incluido</h3>
+            <p>Llévate <b>absolutamente todos los manuales actuales y futuras actualizaciones</b> de por vida mediante un único pago. Sin mensualidades ni cobros ocultos.</p>
+            
+            <div class="vip-pricing-row">
+                <span class="vip-old-price">S/ 190.00</span>
+                <span class="vip-price">S/ 49.00</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: var(--white);">/ ÚNICO PAGO</span>
+            </div>
+
+            <button class="btn-vip-action" onclick="addToCart('Pase VIP Acceso Total', 49.00)">
+                <i class="fa-solid fa-shield-cat"></i> Obtener Pase VIP de Pago Único Ahora
+            </button>
+        </div>
+    </div>
+</div>
 
 <!-- FOOTER MODERNO -->
 <footer>
@@ -911,7 +1069,7 @@
     // Buscador Pro y Filtrado Sensible
     document.getElementById("search").addEventListener("keyup", function() {
         const val = this.value.toLowerCase().trim();
-        const cards = document.querySelectorAll(".card");
+        const cards = document.querySelectorAll(".products .card");
         let visibleCount = 0;
 
         cards.forEach(card => {
