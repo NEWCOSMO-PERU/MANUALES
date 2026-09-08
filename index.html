@@ -95,24 +95,6 @@
             100% { filter: drop-shadow(0 0 18px rgba(0, 229, 255, 1)) brightness(1.3); }
         }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: .3s;
-        }
-
-        nav a:hover {
-            color: var(--cyan);
-        }
-
         .nav-actions {
             display: flex;
             align-items: center;
@@ -559,7 +541,6 @@
         }
 
         @media(max-width: 768px) {
-            nav { display: none; }
             .cart-sidebar { max-width: 100%; right: -100%; }
             .footer-bottom { flex-direction: column; text-align: center; }
             
@@ -758,10 +739,6 @@
 <header>
     <div class="logo"><img src="logo.png" alt="logo">NEWCOSMO</div>
     <div class="nav-actions">
-        <nav>
-            <a href="#catalogo">Catálogo</a>
-            <a href="#faq">FAQ</a>
-        </nav>
         <div class="dark-toggle" onclick="toggleDark()">
             <i id="theme-icon" class="fas fa-moon"></i>
         </div>
@@ -938,7 +915,7 @@
         </div>
     </div>
 
-    <!-- Ejemplos adicionales para probar la paginación (más de 12 elementos totales) -->
+    <!-- Ejemplos adicionales para probar la paginación -->
     <div class="card" data-title="Fotografía Digital" data-price="16.90">
         <div class="img-wrapper"><img src="https://picsum.photos/400/300?11" alt="Foto"></div>
         <div class="content">
@@ -1181,7 +1158,6 @@
         const searchVal = document.getElementById("search").value.toLowerCase().trim();
         const cards = Array.from(document.querySelectorAll(".products .card"));
         
-        // Filtrar tarjetas según búsqueda
         const filteredCards = cards.filter(card => {
             const text = card.innerText.toLowerCase();
             return text.includes(searchVal);
@@ -1190,20 +1166,16 @@
         const totalPages = Math.ceil(filteredCards.length / itemsPerPage) || 1;
         if(currentPage > totalPages) currentPage = totalPages;
 
-        // Ocultar todas las tarjetas primero
         cards.forEach(card => card.style.display = "none");
 
-        // Mostrar solo las tarjetas de la página actual
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const pageCards = filteredCards.slice(start, end);
 
         pageCards.forEach(card => card.style.display = "flex");
 
-        // Mensaje si no hay resultados
         document.getElementById('no-results').style.display = (filteredCards.length === 0) ? "block" : "none";
 
-        // Renderizar controles de paginación
         renderPaginationControls(totalPages);
     }
 
@@ -1211,9 +1183,8 @@
         const paginationEl = document.getElementById('pagination');
         paginationEl.innerHTML = '';
 
-        if(totalPages <= 1) return; // No mostrar si cabe en una sola página
+        if(totalPages <= 1) return;
 
-        // Botón Anterior
         const prevBtn = document.createElement('button');
         prevBtn.className = 'page-btn';
         prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
@@ -1227,7 +1198,6 @@
         };
         paginationEl.appendChild(prevBtn);
 
-        // Botones de Números de Página
         for(let i = 1; i <= totalPages; i++) {
             const pageBtn = document.createElement('button');
             pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
@@ -1240,7 +1210,6 @@
             paginationEl.appendChild(pageBtn);
         }
 
-        // Botón Siguiente
         const nextBtn = document.createElement('button');
         nextBtn.className = 'page-btn';
         nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
@@ -1256,7 +1225,7 @@
     }
 
     document.getElementById("search").addEventListener("keyup", function() {
-        currentPage = 1; // Reiniciar a la página 1 al buscar
+        currentPage = 1;
         renderCatalog();
     });
 
@@ -1327,7 +1296,7 @@
     window.onload = () => {
         setTimeout(() => document.getElementById('splash').classList.add('fade'), 1500);
         updateCartUI();
-        renderCatalog(); // Inicializar catálogo con paginación
+        renderCatalog();
         if(localStorage.getItem("theme") === "light") {
             document.body.classList.add("light");
             document.getElementById('theme-icon').className = "fas fa-sun";
