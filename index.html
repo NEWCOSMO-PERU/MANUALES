@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuales Premium</title>
+    <title>Manuales Premium | Habilidades que Generan Ingresos</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,15 +12,15 @@
         :root {
             --gold: #d4af37;
             --gold-hover: #f3cf5a;
-            --cyan: #00e5ff;          /* Nuevo tono celeste principal del logo */
-            --cyan-hover: #6fffe9;    /* Tono celeste hover */
+            --cyan: #00e5ff;          
+            --cyan-hover: #6fffe9;    
             --dark: #0f1115;
             --card: #161b22;
             --white: #ffffff;
             --bg: #0b0c10;
             --text: #94a3b8;
             --text-title: #ffffff;
-            --border: rgba(0, 229, 255, 0.18); /* Integrando celeste en los bordes sutiles */
+            --border: rgba(0, 229, 255, 0.18);
             --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
             --whatsapp: #25D366;
             --overlay: rgba(0,0,0,0.7);
@@ -82,7 +82,19 @@
             align-items: center;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
         }
-        .logo img { height: 42px; vertical-align: middle; margin-right: 10px; }
+        /* Logo del header más brillante y llamativo */
+        .logo img { 
+            height: 45px; 
+            vertical-align: middle; 
+            margin-right: 10px; 
+            filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)) brightness(1.2);
+            animation: headerLogoGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes headerLogoGlow {
+            0% { filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6)) brightness(1.1); }
+            100% { filter: drop-shadow(0 0 18px rgba(0, 229, 255, 1)) brightness(1.3); }
+        }
 
         nav {
             display: flex;
@@ -150,7 +162,7 @@
             font-weight: bold;
         }
 
-        /* --- HERO CON LOGO BRILLANTE (CELESTE + DORADO) --- */
+        /* --- HERO --- */
         .hero {
             padding: 100px 5% 80px;
             text-align: center;
@@ -169,17 +181,13 @@
             height: auto;
             display: block;
             margin: 0 auto;
-            filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.4));
+            filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.5));
             animation: logoGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes logoGlow {
-            0% {
-                filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.3)) scale(1);
-            }
-            100% {
-                filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.7)) scale(1.02);
-            }
+            0% { filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4)) scale(1); }
+            100% { filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.8)) scale(1.02); }
         }
 
         .hero p {
@@ -288,7 +296,6 @@
             margin: 0 auto;
         }
 
-        /* TARJETAS NORMALES */
         .card {
             background: var(--card);
             border-radius: 20px;
@@ -367,7 +374,7 @@
             font-size: 1.1rem; color: var(--text); display: none;
         }
 
-        /* --- TARJETA VIP (Mantiene detalles dorados premium combinados con acentos celestes) --- */
+        /* --- TARJETA VIP --- */
         .ultimate-vip-container {
             max-width: 900px;
             margin: 70px auto 40px auto;
@@ -573,7 +580,7 @@
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
         .cart-overlay.open { display: block; }
 
-        /* --- FOOTER MODERNO --- */
+        /* --- FOOTER MODERNO CON CONTÁCTANOS Y LOGO --- */
         footer { 
             background: #090b0e; 
             color: var(--text);
@@ -585,9 +592,24 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .footer-brand img {
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(0,229,255,0.6));
+        }
+        .footer-brand span {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--cyan);
         }
         .footer-col h3 { 
             color: var(--cyan); 
@@ -595,12 +617,44 @@
             font-weight: 800; 
             font-size: 1.1rem;
             text-shadow: 0 0 10px rgba(0,229,255,0.2);
+            position: relative;
+            padding-bottom: 8px;
         }
-        .footer-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
+        /* Línea inferior celeste en títulos del footer como en tu imagen */
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 35px; height: 2px;
+            background: var(--cyan);
+        }
+        .footer-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 12px; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--cyan); padding-left: 5px; }
+
+        /* Estilo específico para la sección Contáctanos */
+        .contact-info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .contact-info-item i {
+            color: var(--cyan);
+            font-size: 1.1rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
         
         .footer-bottom {
             max-width: 1200px;
@@ -614,7 +668,7 @@
             gap: 15px;
             font-size: 0.85rem;
         }
-        .social-icons { display: flex; gap: 15px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
         .social-icons a {
             width: 35px; height: 35px; border-radius: 50%; background: var(--card);
             border: 1px solid var(--border); color: var(--cyan); display: flex;
@@ -885,11 +939,14 @@
     </details>
 </section>
 
-<!-- FOOTER MODERNO -->
+<!-- FOOTER MODERNO ACTUALIZADO CON LOGO Y SECCIÓN CONTÁCTANOS -->
 <footer>
     <div class="footer-content">
         <div class="footer-col">
-            <h3>NEWCOSMO</h3>
+            <div class="footer-brand">
+                <img src="logo.png" alt="Logo Newcosmo">
+                <span>NEWCOSMO</span>
+            </div>
             <p>Plataforma líder en manuales de formación autogestionada de alta gama. Adquiere conocimientos prácticos orientados a resultados económicos reales.</p>
             <div class="social-icons">
                 <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" title="Soluciones"><i class="fa-solid fa-wrench"></i></a>
@@ -898,6 +955,7 @@
                 <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" title="Wallpapers"><i class="fa-solid fa-image"></i></a>
             </div>
         </div>
+        
         <div class="footer-col">
             <h3>Accesos Rápidos</h3>
             <ul>
@@ -906,6 +964,26 @@
                 <li><a href="#open-cart-btn">Mi Carrito / Pedido</a></li>
             </ul>
         </div>
+
+        <!-- NUEVA SECCIÓN CONTÁCTANOS -->
+        <div class="footer-col">
+            <h3>Contáctanos</h3>
+            <ul class="contact-info-list">
+                <li class="contact-info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Trujillo, La Libertad<br>Perú</span>
+                </li>
+                <li class="contact-info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+51 907 546 093</span>
+                </li>
+                <li class="contact-info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>www.newcosmo@outlook.es</span>
+                </li>
+            </ul>
+        </div>
+
         <div class="footer-col">
             <h3>Soporte Comercial</h3>
             <p><i class="fa-solid fa-headset" style="color: var(--cyan); margin-right: 8px;"></i> Atención automatizada y humana vía WhatsApp las 24 horas.</p>
