@@ -82,7 +82,6 @@
             align-items: center;
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
         }
-        /* Logo del header más brillante y llamativo */
         .logo img { 
             height: 45px; 
             vertical-align: middle; 
@@ -374,7 +373,7 @@
             font-size: 1.1rem; color: var(--text); display: none;
         }
 
-        /* --- TARJETA VIP --- */
+        /* --- TARJETA VIP MODIFICADA CON QR --- */
         .ultimate-vip-container {
             max-width: 900px;
             margin: 70px auto 40px auto;
@@ -419,16 +418,23 @@
             text-transform: uppercase;
         }
 
-        .vip-icon-box {
-            min-width: 130px; height: 130px;
-            background: radial-gradient(circle, rgba(0,229,255,0.2) 0%, rgba(212,175,55,0.05) 100%);
-            border: 2px solid rgba(0,229,255,0.5);
-            border-radius: 50%;
+        .vip-qr-box {
+            min-width: 140px; height: 140px;
+            background: #ffffff;
+            border: 3px solid var(--cyan);
+            border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 3.5rem; color: var(--cyan);
-            box-shadow: 0 0 25px rgba(0,229,255,0.3);
+            padding: 8px;
+            box-shadow: 0 0 25px rgba(0,229,255,0.4);
             flex-shrink: 0;
             animation: vipPulse 3s infinite alternate;
+        }
+
+        .vip-qr-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
         }
 
         @keyframes vipPulse {
@@ -489,26 +495,28 @@
         }
 
         .btn-vip-action {
-            background: linear-gradient(135deg, var(--cyan), var(--gold));
-            color: #000;
+            background: var(--whatsapp);
+            color: #fff;
             border: none;
             padding: 16px 32px;
             width: 100%;
             border-radius: 14px;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             cursor: pointer;
             transition: 0.3s;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 0 25px rgba(0,229,255,0.4);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
         }
 
         .btn-vip-action:hover {
+            background: #1eb855;
             transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(0,229,255,0.7);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
 
         @media(max-width: 768px) {
@@ -580,7 +588,7 @@
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
         .cart-overlay.open { display: block; }
 
-        /* --- FOOTER MODERNO CON CONTÁCTANOS Y LOGO --- */
+        /* --- FOOTER MODERNO (SIN SOPORTE COMERCIAL) --- */
         footer { 
             background: #090b0e; 
             color: var(--text);
@@ -620,7 +628,6 @@
             position: relative;
             padding-bottom: 8px;
         }
-        /* Línea inferior celeste en títulos del footer como en tu imagen */
         .footer-col h3::after {
             content: '';
             position: absolute;
@@ -634,7 +641,6 @@
         .footer-col ul li a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--cyan); padding-left: 5px; }
 
-        /* Estilo específico para la sección Contáctanos */
         .contact-info-list {
             list-style: none;
             display: flex;
@@ -793,7 +799,6 @@
 
 <section class="products" id="products">
 
-    <!-- Manuales Individuales -->
     <div class="card" data-title="Inteligencia Artificial" data-price="19.90">
         <div class="img-wrapper"><img src="https://picsum.photos/400/300?1" alt="Guía IA"></div>
         <div class="content">
@@ -897,17 +902,17 @@
     <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
 </section>
 
-<!-- TARJETA DE PAGO ÚNICO EXCLUSIVA CENTRADA -->
+<!-- SECCIÓN VIP CON CÓDIGO QR Y ESCANEO -->
 <div class="ultimate-vip-container">
     <div class="card ultimate-vip" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
         <div class="vip-badge-ribbon">PAGO ÚNICO</div>
-        <div class="vip-icon-box">
-            <i class="fa-solid fa-crown"></i>
+        <div class="vip-qr-box">
+            <img src="qr-yape.png" alt="Código QR Yape">
         </div>
         <div class="vip-info-content">
-            <span class="vip-badge-tag"><i class="fa-solid fa-star"></i> ACCESO TOTAL VITALICIO</span>
+            <span class="vip-badge-tag"><i class="fa-solid fa-qrcode"></i> ESCANEA Y ENVÍA CAPTURA</span>
             <h3 style="margin-top: 8px;">Pase VIP Todo Incluido</h3>
-            <p>Llévate <b>absolutamente todos los manuales actuales y futuras actualizaciones</b> de por vida mediante un único pago. Sin mensualidades ni cobros ocultos.</p>
+            <p>Escanea el código QR para realizar el pago único. Luego, haz clic en el botón de abajo para enviar tu captura por WhatsApp y recibir de inmediato el enlace con la carpeta de archivos.</p>
             
             <div class="vip-pricing-row">
                 <span class="vip-old-price">S/ 190.00</span>
@@ -915,9 +920,9 @@
                 <span style="font-size: 0.85rem; font-weight: 700; color: var(--white);">/ ÚNICO PAGO</span>
             </div>
 
-            <button class="btn-vip-action" onclick="addToCart('Pase VIP Acceso Total', 49.00)">
-                <i class="fa-solid fa-shield-cat"></i> Obtener Pase VIP de Pago Único Ahora
-            </button>
+            <a class="btn-vip-action" href="https://wa.me/51959493921?text=Hola,%20acabo%20de%20escanear%20el%20QR%20y%20realizar%20el%20pago%20del%20Pase%20VIP.%20Adjunto%20mi%20captura%20para%20recibir%20el%20enlace%20de%20la%20carpeta%20de%20archivos." target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Enviar Captura al WhatsApp
+            </a>
         </div>
     </div>
 </div>
@@ -939,7 +944,7 @@
     </details>
 </section>
 
-<!-- FOOTER MODERNO ACTUALIZADO CON LOGO Y SECCIÓN CONTÁCTANOS -->
+<!-- FOOTER ACTUALIZADO (SIN SOPORTE COMERCIAL) -->
 <footer>
     <div class="footer-content">
         <div class="footer-col">
@@ -965,7 +970,6 @@
             </ul>
         </div>
 
-        <!-- NUEVA SECCIÓN CONTÁCTANOS -->
         <div class="footer-col">
             <h3>Contáctanos</h3>
             <ul class="contact-info-list">
@@ -983,12 +987,6 @@
                 </li>
             </ul>
         </div>
-
-        <div class="footer-col">
-            <h3>Soporte Comercial</h3>
-            <p><i class="fa-solid fa-headset" style="color: var(--cyan); margin-right: 8px;"></i> Atención automatizada y humana vía WhatsApp las 24 horas.</p>
-            <p><i class="fa-solid fa-shield-halved" style="color: var(--cyan); margin-right: 8px;"></i> Transacciones y descargas 100% seguras y garantizadas.</p>
-        </div>
     </div>
     <div class="footer-bottom">
         <p>© 2026 NEWCOSMO - Todos los derechos reservados.</p>
@@ -1001,7 +999,6 @@
 </a>
 
 <script>
-    // Inicialización Segura del Carrito
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem("manuales_cart")) || [];
@@ -1010,7 +1007,6 @@
         cart = [];
     }
 
-    // Sidebar de Carrito
     const sidebar = document.getElementById('cart-sidebar');
     const overlay = document.getElementById('cart-overlay');
     
@@ -1094,7 +1090,6 @@
         totalEl.innerText = `S/ ${total.toFixed(2)}`;
     }
 
-    // Buscador Pro y Filtrado Sensible
     document.getElementById("search").addEventListener("keyup", function() {
         const val = this.value.toLowerCase().trim();
         const cards = document.querySelectorAll(".products .card");
@@ -1113,15 +1108,13 @@
         document.getElementById('no-results').style.display = (visibleCount === 0) ? "block" : "none";
     });
 
-    // Sanitización para cadenas de WhatsApp
     function sanitize(str) {
         return str.replace(/[&<>"'/\\*_\n]/g, '').trim();
     }
 
-    // Despacho de Orden vía WhatsApp Link Generator
     function sendOrderWhatsApp() {
         if(cart.length === 0) {
-            alert("Agrega al menos una guía o el Pase VIP a tu carrito de compras.");
+            alert("Agrega al menos una guía a tu carrito de compras.");
             return;
         }
 
@@ -1165,7 +1158,6 @@
         }, 1200);
     }
 
-    // Sistema de Toggle de Preferencia de Color (Dark/Light Mode)
     function toggleDark() {
         const body = document.body;
         const icon = document.getElementById('theme-icon');
@@ -1180,7 +1172,6 @@
         }
     }
 
-    // Carga inicial del Tema y UI
     window.onload = () => {
         setTimeout(() => document.getElementById('splash').classList.add('fade'), 1500);
         updateCartUI();
