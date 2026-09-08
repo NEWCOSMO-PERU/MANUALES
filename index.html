@@ -1,1307 +1,299 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuales Premium | Habilidades que Generan Ingresos</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <title>NEWCOSMO - Manuales Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            gold: '#f5af19',
+                            dark: '#0f172a',
+                            card: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --gold: #d4af37;
-            --gold-hover: #f3cf5a;
-            --cyan: #00e5ff;          
-            --cyan-hover: #6fffe9;    
-            --dark: #0f1115;
-            --card: #161b22;
-            --white: #ffffff;
-            --bg: #0b0c10;
-            --text: #94a3b8;
-            --text-title: #ffffff;
-            --border: rgba(0, 229, 255, 0.18);
-            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-            --whatsapp: #25D366;
-            --overlay: rgba(0,0,0,0.7);
-        }
-
-        .light {
-            --dark: #f8fafc;
-            --card: #ffffff;
-            --white: #0f172a;
-            --bg: #f1f5f9;
-            --text: #475569;
-            --text-title: #0f172a;
-            --border: rgba(0, 140, 255, 0.12);
-            --shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
-            --overlay: rgba(15,23,42,0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            transition: background 0.3s, color 0.3s;
-            overflow-x: hidden;
-            padding-top: 75px;
-        }
-
-        /* --- HEADER PREMIUM --- */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            z-index: 1000;
-            background: rgba(15, 17, 21, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            height: 75px;
-            transition: background 0.3s;
-        }
-        body.light header {
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--cyan);
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-        }
-        .logo img { 
-            height: 45px; 
-            vertical-align: middle; 
-            margin-right: 10px; 
-            filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)) brightness(1.2);
-            animation: headerLogoGlow 2.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes headerLogoGlow {
-            0% { filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6)) brightness(1.1); }
-            100% { filter: drop-shadow(0 0 18px rgba(0, 229, 255, 1)) brightness(1.3); }
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .dark-toggle {
-            cursor: pointer;
-            font-size: 20px;
-            color: var(--cyan);
-            transition: transform 0.3s;
-        }
-        .dark-toggle:hover { transform: rotate(15deg); }
-
-        .cart-trigger {
-            background: var(--card);
-            color: var(--cyan);
-            border: 1px solid var(--border);
-            padding: 10px 16px;
-            border-radius: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative;
-            transition: 0.3s;
-            box-shadow: var(--shadow);
-        }
-        .cart-trigger:hover {
-            background: var(--cyan);
-            color: #000;
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
-        }
-        .cart-badge {
-            background: var(--gold);
-            color: #000;
-            font-size: 0.75rem;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            padding: 100px 5% 80px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(0,229,255,0.12) 0%, rgba(212,175,55,0.08) 50%, transparent 75%);
-        }
-
-        .hero-logo-container {
-            display: inline-block;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .hero-logo {
-            width: 220px;
-            max-width: 80vw;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            filter: drop-shadow(0 0 25px rgba(0, 229, 255, 0.5));
-            animation: logoGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes logoGlow {
-            0% { filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4)) scale(1); }
-            100% { filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.8)) scale(1.02); }
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            max-width: 650px;
-            margin: 0 auto 10px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 16px 36px;
-            background: linear-gradient(135deg, var(--cyan), #0099ff);
-            color: #000;
-            font-weight: 700;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 20px rgba(0,229,255,0.3);
-        }
-
-        .btn:hover {
-            background: var(--cyan-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0,229,255,0.6);
-        }
-
-        /* --- STATS --- */
-        .stats {
-            padding: 20px 5% 50px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stat {
-            background: var(--card);
-            padding: 30px 20px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-        }
-        .stat:hover {
-            border-color: rgba(0,229,255,0.4);
-            box-shadow: 0 0 20px rgba(0,229,255,0.15);
-        }
-
-        .stat h2 {
-            color: var(--cyan);
-            font-size: 38px;
-            font-weight: 800;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(0,229,255,0.3);
-        }
-        .stat p { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- CATÁLOGO --- */
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            font-weight: 800;
-            margin: 70px 0 20px;
-            color: var(--text-title);
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
-        }
-
-        .search-container {
-            max-width: 550px;
-            margin: 0 auto 40px;
-            position: relative;
-            width: 90%;
-        }
-        .search-container i {
-            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-            color: var(--cyan); font-size: 1.1rem;
-        }
-        .search {
-            width: 100%;
-            padding: 16px 20px 16px 55px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            color: var(--white);
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-            box-shadow: var(--shadow);
-        }
-        .search:focus {
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(0,229,255,0.25);
-        }
-
-        .products {
-            padding: 20px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0,229,255,0.6);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(0, 229, 255, 0.2);
-        }
-
-        .img-wrapper {
-            width: 100%; height: 210px; overflow: hidden; position: relative;
-        }
-        .card img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .card:hover img { transform: scale(1.06); }
-
-        .content {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .content h3 {
-            font-size: 1.25rem;
-            color: var(--white);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        .content p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
-
-        .price {
-            font-size: 26px;
-            color: var(--cyan);
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0,229,255,0.2);
-        }
-
-        .buy {
-            background: rgba(0,229,255,0.1);
-            color: var(--cyan);
-            border: 1px solid var(--cyan);
-            padding: 14px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 10px rgba(0,229,255,0.1);
-        }
-        .buy:hover { 
-            background: var(--cyan);
-            color: #000;
-            box-shadow: 0 0 20px rgba(0,229,255,0.4);
-        }
-
-        .no-results {
-            grid-column: 1 / -1; text-align: center; padding: 40px;
-            font-size: 1.1rem; color: var(--text); display: none;
-        }
-
-        /* --- PAGINACIÓN --- */
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 40px 0 20px;
-        }
-
-        .page-btn {
-            background: var(--card);
-            color: var(--white);
-            border: 1px solid var(--border);
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: var(--shadow);
-        }
-
-        .page-btn:hover:not(:disabled) {
-            background: var(--cyan);
-            color: #000;
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
-        }
-
-        .page-btn.active {
-            background: var(--cyan);
-            color: #000;
-            border-color: var(--cyan);
-        }
-
-        .page-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        /* --- TARJETA VIP MODIFICADA CON QR --- */
-        .ultimate-vip-container {
-            max-width: 900px;
-            margin: 70px auto 40px auto;
-            padding: 0 5%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .card.ultimate-vip {
-            width: 100%;
-            background: linear-gradient(145deg, #161b22, #0d1117);
-            border: 2px solid var(--gold);
-            border-radius: 28px;
-            padding: 45px 40px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 40px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), 0 20px 40px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .card.ultimate-vip:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 70px rgba(0, 229, 255, 0.3), 0 25px 50px rgba(0,0,0,0.8);
-            border-color: var(--cyan);
-        }
-
-        .vip-badge-ribbon {
-            position: absolute;
-            top: 25px; right: -35px;
-            background: var(--gold);
-            color: #000;
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 6px 40px;
-            transform: rotate(45deg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .vip-qr-box {
-            min-width: 140px; height: 140px;
-            background: #ffffff;
-            border: 3px solid var(--cyan);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            padding: 8px;
-            box-shadow: 0 0 25px rgba(0,229,255,0.4);
-            flex-shrink: 0;
-            animation: vipPulse 3s infinite alternate;
-        }
-
-        .vip-qr-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        @keyframes vipPulse {
-            0% { box-shadow: 0 0 15px rgba(0,229,255,0.2); }
-            100% { box-shadow: 0 0 35px rgba(0,229,255,0.5); }
-        }
-
-        .vip-info-content {
-            flex-grow: 1;
-            z-index: 1;
-        }
-
-        .vip-info-content h3 {
-            font-size: 2rem;
-            color: var(--white);
-            margin-bottom: 12px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .vip-info-content p {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .vip-pricing-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .vip-old-price {
-            text-decoration: line-through;
-            font-size: 1.1rem;
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        .vip-price {
-            font-size: 38px;
-            color: var(--cyan);
-            font-weight: 900;
-            text-shadow: 0 0 15px rgba(0,229,255,0.3);
-        }
-
-        .vip-badge-tag {
-            background: rgba(0,229,255,0.15);
-            color: var(--cyan);
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border: 1px solid rgba(0,229,255,0.3);
-        }
-
-        .btn-vip-action {
-            background: var(--whatsapp);
-            color: #fff;
-            border: none;
-            padding: 16px 32px;
-            width: 100%;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            text-decoration: none;
-        }
-
-        .btn-vip-action:hover {
-            background: #1eb855;
-            transform: scale(1.02);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        @media(max-width: 768px) {
-            .cart-sidebar { max-width: 100%; right: -100%; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            
-            .card.ultimate-vip {
-                flex-direction: column;
-                text-align: center;
-                padding: 35px 20px;
-                gap: 20px;
-            }
-            .vip-pricing-row {
-                justify-content: center;
-            }
-            .vip-badge-ribbon {
-                display: none;
-            }
-        }
-
-        /* --- FAQ --- */
-        .faq { padding: 20px 5% 60px; max-width: 750px; margin: 0 auto; }
-        details {
-            background: var(--card);
-            padding: 18px 22px;
-            margin-bottom: 15px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        details:hover { border-color: rgba(0,229,255,0.3); }
-        summary { font-weight: 700; color: var(--white); font-size: 1.05rem; outline: none; }
-        details p { padding-top: 12px; line-height: 1.6; font-size: 0.95rem; }
-
-        /* --- SIDEBAR PANEL CARRITO --- */
-        .cart-sidebar {
-            position: fixed; top: 0; right: -420px; width: 100%; max-width: 420px; height: 100%;
-            background: var(--card); border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(0,0,0,0.3);
-            z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
-        }
-        .cart-sidebar.open { right: 0; }
-        
-        .cart-header { padding: 25px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h2 { font-size: 1.3rem; font-weight: 800; color: var(--white); }
-        .close-cart { font-size: 1.8rem; cursor: pointer; color: var(--white); border: none; background: none; }
-        
-        .cart-items-wrapper { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-        .cart-item-info { flex-grow: 1; }
-        .cart-item-title { font-weight: 700; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
-        .cart-item-price { color: var(--cyan); font-weight: 700; font-size: 0.9rem; }
-        
-        .cart-item-controls { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.15); border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; }
-        .cart-qty-btn { background: transparent; border: none; color: var(--white); cursor: pointer; font-weight: bold; font-size: 1rem; }
-        .cart-qty-num { font-size: 0.9rem; font-weight: 700; color: var(--white); min-width: 15px; text-align: center; }
-
-        .cart-form { padding: 20px 25px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
-        .form-input { width: 100%; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-size: 0.9rem; outline: none; }
-        .form-input:focus { border-color: var(--cyan); }
-
-        .cart-footer { padding: 25px; border-top: 1px solid var(--border); }
-        .total-main { display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 800; font-size: 1.25rem; color: var(--white); }
-        .checkout-btn { width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .checkout-btn:hover { background: #1eb855; }
-
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
-        .cart-overlay.open { display: block; }
-
-        /* --- FOOTER MODERNO --- */
-        footer { 
-            background: #090b0e; 
-            color: var(--text);
-            padding: 60px 5% 30px; 
-            margin-top: 60px; 
-            border-top: 1px solid var(--border); 
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-        .footer-brand img {
-            height: 38px;
-            filter: drop-shadow(0 0 10px rgba(0,229,255,0.6));
-        }
-        .footer-brand span {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--cyan);
-        }
-        .footer-col h3 { 
-            color: var(--cyan); 
-            margin-bottom: 15px; 
-            font-weight: 800; 
-            font-size: 1.1rem;
-            text-shadow: 0 0 10px rgba(0,229,255,0.2);
-            position: relative;
-            padding-bottom: 8px;
-        }
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0; bottom: 0;
-            width: 35px; height: 2px;
-            background: var(--cyan);
-        }
-        .footer-col p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 12px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--cyan); padding-left: 5px; }
-
-        .contact-info-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.9rem;
-            color: var(--text);
-            line-height: 1.4;
-        }
-        .contact-info-item i {
-            color: var(--cyan);
-            font-size: 1.1rem;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-        
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 0.85rem;
-        }
-        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icons a {
-            width: 35px; height: 35px; border-radius: 50%; background: var(--card);
-            border: 1px solid var(--border); color: var(--cyan); display: flex;
-            align-items: center; justify-content: center; text-decoration: none; transition: 0.3s;
-        }
-        .social-icons a:hover { background: var(--cyan); color: #000; transform: translateY(-3px); }
-
-        .whatsapp-fixed {
-            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
-            background: var(--whatsapp); display: flex; justify-content: center; align-items: center;
-            border-radius: 50%; font-size: 28px; color: white; text-decoration: none; z-index: 998;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); transition: 0.3s;
-        }
-        .whatsapp-fixed:hover { transform: scale(1.1); }
-    
-        #splash {
-            position: fixed; inset: 0; background: #000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 99999; transition: opacity 0.6s ease;
-        }
-        #splash.fade { opacity: 0; pointer-events: none; }
-        #splash img { width: 160px; animation: pop 1s ease; margin-bottom: 25px; }
-        
-        .spinner {
-            width: 45px; height: 45px;
-            border: 4px solid rgba(0, 229, 255, 0.2);
-            border-top: 4px solid var(--cyan);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes pop { 0% { transform: scale(.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
 
-<div id="splash">
-    <img src="logo.png" alt="logo">
-    <div class="spinner"></div>
-</div>
-
-<header>
-    <div class="logo"><img src="logo.png" alt="logo">NEWCOSMO</div>
-    <div class="nav-actions">
-        <div class="dark-toggle" onclick="toggleDark()">
-            <i id="theme-icon" class="fas fa-moon"></i>
-        </div>
-        <button class="cart-trigger" id="open-cart-btn">
-            <i class="fa-solid fa-basket-shopping"></i> Pedido
-            <span class="cart-badge" id="cartCount">0</span>
-        </button>
-    </div>
-</header>
-
-<div class="cart-overlay" id="cart-overlay"></div>
-
-<!-- PANEL LATERAL DEL CARRITO -->
-<div class="cart-sidebar" id="cart-sidebar">
-    <div class="cart-header">
-        <h2><i class="fa-solid fa-basket-shopping"></i> Tus Manuales</h2>
-        <button class="close-cart" id="close-cart-btn">&times;</button>
-    </div>
-    <div class="cart-items-wrapper" id="cart-items-container">
-        <!-- Renderizado dinámico -->
-    </div>
-    <div class="cart-form">
-        <input type="text" id="cust-name" placeholder="Tu Nombre Completo" class="form-input">
-        <select id="cust-method" class="form-input">
-            <option value="Yape">Yape</option>
-            <option value="Plin">Plin</option>
-            <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-        </select>
-    </div>
-    <div class="cart-footer">
-        <div class="total-main">
-            <span>Total a pagar:</span>
-            <span id="cartTotal">S/ 0.00</span>
-        </div>
-        <button class="checkout-btn" onclick="sendOrderWhatsApp()">
-            <i class="fa-brands fa-whatsapp"></i> Solicitar Acceso Inmediato
-        </button>
-    </div>
-</div>
-
-<section class="hero">
-    <div class="hero-logo-container">
-        <img src="logo.png" alt="NEWCOSMO Logo" class="hero-logo">
-    </div>
-    <p>Manuales digitales estructurados profesionalmente para optimizar tu curva de aprendizaje y estudiar desde cualquier dispositivo.</p>
-    <a href="#catalogo" class="btn">Explorar Catálogo</a>
-</section>
-
-<section class="stats">
-    <div class="stat">
-        <h2>500+</h2>
-        <p>Alumnos Activos</p>
-    </div>
-    <div class="stat">
-        <h2>10</h2>
-        <p>Guías Pro</p>
-    </div>
-    <div class="stat">
-        <h2>98%</h2>
-        <p>Casos de Éxito</p>
-    </div>
-    <div class="stat">
-        <h2>24/7</h2>
-        <p>Envío Digital</p>
-    </div>
-</section>
-
-<h2 class="section-title" id="catalogo">Catálogo de Guías Profesionales</h2>
-
-<div class="search-container">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" class="search" placeholder="¿Qué habilidad deseas dominar hoy?..." id="search">
-</div>
-
-<section class="products" id="products">
-
-    <div class="card" data-title="Inteligencia Artificial" data-price="19.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?1" alt="Guía IA"></div>
-        <div class="content">
-            <h3>Inteligencia Artificial</h3>
-            <p>Domina prompts, automatizaciones y modelos LLM desde cero de manera práctica.</p>
-            <div class="price">S/ 19.90</div>
-            <button class="buy" onclick="addToCart('Inteligencia Artificial', 19.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Excel Avanzado" data-price="14.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?2" alt="Excel"></div>
-        <div class="content">
-            <h3>Excel Avanzado</h3>
-            <p>Tablas dinámicas, macros, modelado de datos dashboards profesionales.</p>
-            <div class="price">S/ 14.90</div>
-            <button class="buy" onclick="addToCart('Excel Avanzado', 14.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Marketing Digital" data-price="24.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?3" alt="Marketing"></div>
-        <div class="content">
-            <h3>Marketing Digital</h3>
-            <p>Estrategias avanzadas de pauta publicitaria en Meta Ads, Google y Growth.</p>
-            <div class="price">S/ 24.90</div>
-            <button class="buy" onclick="addToCart('Marketing Digital', 24.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Programación Web" data-price="29.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?4" alt="Web"></div>
-        <div class="content">
-            <h3>Programación Web</h3>
-            <p>Construye aplicaciones web modernas con HTML5, CSS3, JavaScript y lógica estructurada.</p>
-            <div class="price">S/ 29.90</div>
-            <button class="buy" onclick="addToCart('Programación Web', 29.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Diseño Gráfico" data-price="17.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?5" alt="Diseño"></div>
-        <div class="content">
-            <h3>Diseño Gráfico</h3>
-            <p>Composición visual, teoría del color y herramientas líderes del mercado publicitario.</p>
-            <div class="price">S/ 17.90</div>
-            <button class="buy" onclick="addToCart('Diseño Gráfico', 17.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Criptomonedas" data-price="21.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?6" alt="Crypto"></div>
-        <div class="content">
-            <h3>Criptomonedas</h3>
-            <p>Fundamentos de Blockchain, análisis técnico seguro y gestión de carteras digitales.</p>
-            <div class="price">S/ 21.90</div>
-            <button class="buy" onclick="addToCart('Criptomonedas', 21.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Negocios Online" data-price="18.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?7" alt="Negocios"></div>
-        <div class="content">
-            <h3>Negocios Online</h3>
-            <p>Modelos de monetización digital escalables y metodologías ágiles de validación.</p>
-            <div class="price">S/ 18.90</div>
-            <button class="buy" onclick="addToCart('Negocios Online', 18.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Inglés Básico" data-price="12.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?8" alt="Inglés"></div>
-        <div class="content">
-            <h3>Inglés Básico</h3>
-            <p>Estructura comunicativa esencial y vocabulario orientado al ecosistema laboral global.</p>
-            <div class="price">S/ 12.90</div>
-            <button class="buy" onclick="addToCart('Inglés Básico', 12.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Cocina Profesional" data-price="15.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?9" alt="Cocina"></div>
-        <div class="content">
-            <h3>Cocina Profesional</h3>
-            <p>Técnicas culinarias fundamentales de vanguardia internacionales y manejo de insumos.</p>
-            <div class="price">S/ 15.90</div>
-            <button class="buy" onclick="addToCart('Cocina Profesional', 15.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Reparación de Celulares" data-price="34.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?10" alt="Celulares"></div>
-        <div class="content">
-            <h3>Reparación de Celulares</h3>
-            <p>Diagnóstico electrónico avanzado de hardware, micro-soldadura y mantenimiento modular.</p>
-            <div class="price">S/ 34.90</div>
-            <button class="buy" onclick="addToCart('Reparación de Celulares', 34.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <!-- Ejemplos adicionales para probar la paginación -->
-    <div class="card" data-title="Fotografía Digital" data-price="16.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?11" alt="Foto"></div>
-        <div class="content">
-            <h3>Fotografía Digital</h3>
-            <p>Manejo de cámaras réflex, iluminación natural, encuadres y revelado digital.</p>
-            <div class="price">S/ 16.90</div>
-            <button class="buy" onclick="addToCart('Fotografía Digital', 16.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Edición de Video" data-price="22.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?12" alt="Video"></div>
-        <div class="content">
-            <h3>Edición de Video</h3>
-            <p>Montaje, efectos visuales y transiciones dinámicas para creadores de contenido.</p>
-            <div class="price">S/ 22.90</div>
-            <button class="buy" onclick="addToCart('Edición de Video', 22.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Finanzas Personales" data-price="13.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?13" alt="Finanzas"></div>
-        <div class="content">
-            <h3>Finanzas Personales</h3>
-            <p>Aprende a gestionar presupuestos, salir de deudas y realizar inversiones inteligentes.</p>
-            <div class="price">S/ 13.90</div>
-            <button class="buy" onclick="addToCart('Finanzas Personales', 13.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="card" data-title="Huerta Urbana" data-price="11.90">
-        <div class="img-wrapper"><img src="https://picsum.photos/400/300?14" alt="Huerta"></div>
-        <div class="content">
-            <h3>Huerta Urbana</h3>
-            <p>Cultiva tus propios alimentos orgánicos en espacios reducidos en casa.</p>
-            <div class="price">S/ 11.90</div>
-            <button class="buy" onclick="addToCart('Huerta Urbana', 11.90)">Agregar al Pedido</button>
-        </div>
-    </div>
-
-    <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
-</section>
-
-<!-- CONTENEDOR DE PAGINACIÓN -->
-<div class="pagination-container" id="pagination"></div>
-
-<!-- SECCIÓN VIP CON CÓDIGO QR Y ESCANEO -->
-<div class="ultimate-vip-container">
-    <div class="card ultimate-vip" data-title="Pase VIP Acceso Total Vitalicio" data-price="49.00">
-        <div class="vip-badge-ribbon">PAGO ÚNICO</div>
-        <div class="vip-qr-box">
-            <img src="qr-yape.png" alt="Código QR Yape">
-        </div>
-        <div class="vip-info-content">
-            <span class="vip-badge-tag"><i class="fa-solid fa-qrcode"></i> ESCANEA Y ENVÍA CAPTURA</span>
-            <h3 style="margin-top: 8px;">Pase VIP Todo Incluido</h3>
-            <p>Escanea el código QR para realizar el pago único. Luego, haz clic en el botón de abajo para enviar tu captura por WhatsApp y recibir de inmediato el enlace con la carpeta de archivos.</p>
+    <!-- HERO SECTION (Sin barra de menú superior) -->
+    <header class="relative overflow-hidden pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6 shadow-sm">
+                <i class="fa-solid fa-crown text-amber-400"></i> NEWCOSMO • MANUALES PREMIUM
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
+                Domina Habilidades Rentables <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Sin Rodeos</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-400 mb-8">
+                Accede a manuales digitales probados para escalar tus ingresos, optimizar procesos y destacar en el entorno digital actual.
+            </p>
             
-            <div class="vip-pricing-row">
-                <span class="vip-old-price">S/ 190.00</span>
-                <span class="vip-price">S/ 49.00</span>
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--white);">/ ÚNICO PAGO</span>
-            </div>
-
-            <a class="btn-vip-action" href="https://wa.me/51959493921?text=Hola,%20acabo%20de%20escanear%20el%20QR%20y%20realizar%20el%20pago%20del%20Pase%20VIP.%20Adjunto%20mi%20captura%20para%20recibir%20el%20enlace%20de%20la%20carpeta%20de%20archivos." target="_blank">
-                <i class="fa-brands fa-whatsapp"></i> Enviar Captura al WhatsApp
-            </a>
-        </div>
-    </div>
-</div>
-
-<h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
-
-<section class="faq">
-    <details>
-        <summary>¿Cómo recibo el manual o el Pase VIP?</summary>
-        <p>Tras verificar tu comprobante de pago por nuestro canal corporativo, se te envía un enlace directo de descarga en formato PDF de alta resolución listo para cualquier dispositivo móvil u ordenador. Si adquiriste el Pase VIP, obtendrás acceso al repositorio completo.</p>
-    </details>
-    <details>
-        <summary>¿Qué métodos de pago aceptan?</summary>
-        <p>Aceptamos transacciones directas mediante Yape, Plin y transferencias interbancarias directas sin comisiones.</p>
-    </details>
-    <details>
-        <summary>¿Los manuales expiran o requieren suscripción?</summary>
-        <p>De ninguna manera. Ya sea que compres un manual individual o el Pase VIP de Acceso Total, realizas un único pago y el contenido te pertenece de forma vitalicia con actualizaciones incluidas.</p>
-    </details>
-</section>
-
-<!-- FOOTER ACTUALIZADO -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-col">
-            <div class="footer-brand">
-                <img src="logo.png" alt="Logo Newcosmo">
-                <span>NEWCOSMO</span>
-            </div>
-            <p>Plataforma líder en manuales de formación autogestionada de alta gama. Adquiere conocimientos prácticos orientados a resultados económicos reales.</p>
-            <div class="social-icons">
-                <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" title="Soluciones"><i class="fa-solid fa-wrench"></i></a>
-                <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" title="Store"><i class="fa-solid fa-store"></i></a>
-                <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" title="Tonos"><i class="fa-solid fa-music"></i></a>
-                <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" title="Wallpapers"><i class="fa-solid fa-image"></i></a>
-            </div>
-        </div>
-        
-        <div class="footer-col">
-            <h3>Accesos Rápidos</h3>
-            <ul>
-                <li><a href="#catalogo">Catálogo Completo</a></li>
-                <li><a href="#faq">Preguntas Frecuentes</a></li>
-                <li><a href="#open-cart-btn">Mi Carrito / Pedido</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h3>Contáctanos</h3>
-            <ul class="contact-info-list">
-                <li class="contact-info-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Trujillo, La Libertad<br>Perú</span>
-                </li>
-                <li class="contact-info-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>+51 907 546 093</span>
-                </li>
-                <li class="contact-info-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>www.newcosmo@outlook.es</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 NEWCOSMO - Todos los derechos reservados.</p>
-        <p>Diseñado para potenciar el talento digital.</p>
-    </div>
-</footer>
-
-<a class="whatsapp-fixed" href="https://wa.me/51959493921?text=Hola,%20deseo%20información%20sobre%20los%20manuales%20digitales." target="_blank" rel="noopener">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<script>
-    let cart = [];
-    try {
-        cart = JSON.parse(localStorage.getItem("manuales_cart")) || [];
-        if(!Array.isArray(cart)) cart = [];
-    } catch(e) {
-        cart = [];
-    }
-
-    const sidebar = document.getElementById('cart-sidebar');
-    const overlay = document.getElementById('cart-overlay');
-    
-    document.getElementById('open-cart-btn').addEventListener('click', () => {
-        sidebar.classList.add('open');
-        overlay.classList.add('open');
-    });
-
-    const closeCartFunc = () => {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('open');
-    };
-
-    document.getElementById('close-cart-btn').addEventListener('click', closeCartFunc);
-    overlay.addEventListener('click', closeCartFunc);
-
-    function addToCart(name, price) {
-        const existing = cart.find(item => item.name === name);
-        if(existing) {
-            if(existing.qty < 5) existing.qty += 1; 
-        } else {
-            cart.push({ name, price, qty: 1 });
-        }
-        saveCart();
-    }
-
-    function changeQty(name, change) {
-        const item = cart.find(item => item.name === name);
-        if(item) {
-            item.qty += change;
-            if(item.qty <= 0) {
-                cart = cart.filter(i => i.name !== name);
-            }
-            saveCart();
-        }
-    }
-
-    function saveCart() {
-        try {
-            localStorage.setItem("manuales_cart", JSON.stringify(cart));
-        } catch(e) {
-            console.error("Storage bloqueado o lleno");
-        }
-        updateCartUI();
-    }
-
-    function updateCartUI() {
-        const container = document.getElementById('cart-items-container');
-        const badge = document.getElementById('cartCount');
-        const totalEl = document.getElementById('cartTotal');
-        
-        container.innerHTML = '';
-        let total = 0;
-        let count = 0;
-
-        if(cart.length === 0) {
-            container.innerHTML = `<p style="text-align:center; padding: 30px 0; font-size:0.95rem;">El carrito está vacío.</p>`;
-        }
-
-        cart.forEach(item => {
-            total += item.price * item.qty;
-            count += item.qty;
-
-            const itemEl = document.createElement('div');
-            itemEl.classList.add('cart-item');
-            itemEl.innerHTML = `
-                <div class="cart-item-info">
-                    <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">S/ ${(item.price * item.qty).toFixed(2)}</div>
+            <!-- Buscador y Acceso Rápido al Carrito -->
+            <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar manual por título o categoría..." 
+                        class="w-full pl-11 pr-4 py-3.5 bg-slate-900 border border-slate-700 rounded-2xl text-slate-100 placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all shadow-inner">
                 </div>
-                <div class="cart-item-controls">
-                    <button class="cart-qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
-                    <span class="cart-qty-num">${item.qty}</span>
-                    <button class="cart-qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                <button onclick="toggleCart()" class="relative inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-slate-950 font-bold rounded-2xl hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Carrito</span>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-amber-500 text-slate-950 text-xs w-6 h-6 rounded-full font-extrabold flex items-center justify-center border-2 border-slate-950 shadow">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: CATÁLOGO DE MANUALES -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-cyan-400"></i> Catálogo de Manuales
+            </h2>
+            <span id="productCount" class="text-sm text-slate-400">Mostrando manuales</span>
+        </div>
+
+        <!-- Grid de Productos -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Los productos se inyectan dinámicamente vía JavaScript -->
+        </div>
+
+        <!-- Paginación -->
+        <div id="paginationContainer" class="flex justify-center items-center gap-2 mt-12">
+            <!-- Paginación dinámica -->
+        </div>
+    </main>
+
+    <!-- SECCIÓN VIP -->
+    <section class="max-w-5xl mx-auto px-4 py-12 w-full">
+        <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-amber-500/30 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4">
+                        <i class="fa-solid fa-star"></i> ACCESO ILIMITADO
+                    </span>
+                    <h3 class="text-3xl font-extrabold text-white mb-4">Pase VIP Todo Incluido</h3>
+                    <p class="text-slate-400 mb-6">Obtén acceso perpetuo a todo el catálogo actual y a todas las futuras actualizaciones de manuales premium por un único pago.</p>
+                    <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Más de 50 manuales profesionales</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Actualizaciones de por vida gratis</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Soporte prioritario directo</li>
+                    </ul>
+                    <button onclick="addVipToCart()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold rounded-2xl hover:opacity-90 transition-all shadow-lg shadow-amber-500/20 cursor-pointer">
+                        <i class="fa-solid fa-bolt mr-2"></i> Adquirir Pase VIP ($29.99)
+                    </button>
                 </div>
-            `;
-            container.appendChild(itemEl);
-        });
+                <div class="bg-slate-950/80 border border-slate-800 p-6 rounded-2xl text-center flex flex-col items-center justify-center">
+                    <p class="text-xs uppercase tracking-wider text-slate-400 mb-3 font-semibold">Escanea para pagar vía Yape / Plin</p>
+                    <div class="bg-white p-3 rounded-xl shadow-md mb-4 inline-block">
+                        <img src="qr-yape.png" alt="QR Yape" class="w-40 h-40 object-contain mx-auto" onerror="this.src='https://placehold.co/160x160?text=QR+YAPE'">
+                    </div>
+                    <p class="text-xs text-slate-400">Titular: <span class="text-slate-200 font-medium">NewCosmo Oficial</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        badge.innerText = count;
-        totalEl.innerText = `S/ ${total.toFixed(2)}`;
-    }
+    <!-- CARRITO LATERAL (DRAWER) -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-slate-900 border-l border-slate-800 flex flex-col shadow-2xl">
+                <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-cyan-400"></i> Tu Pedido
+                    </h3>
+                    <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Elementos del carrito -->
+                </div>
+                <div class="p-6 border-t border-slate-800 bg-slate-950/50 space-y-4">
+                    <div class="flex justify-between items-center text-lg font-bold text-white">
+                        <span>Total:</span>
+                        <span id="cartTotal" class="text-cyan-400">$0.00</span>
+                    </div>
+                    <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl transition-all shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Enviar Pedido por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    /* --- LÓGICA DE PAGINACIÓN Y FILTRADO --- */
-    const itemsPerPage = 12;
-    let currentPage = 1;
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 px-4 sm:px-6 lg:px-8 mt-auto text-center text-sm text-slate-500">
+        <p>&copy; 2026 NEWCOSMO. Todos los derechos reservados.</p>
+    </footer>
 
-    function renderCatalog() {
-        const searchVal = document.getElementById("search").value.toLowerCase().trim();
-        const cards = Array.from(document.querySelectorAll(".products .card"));
-        
-        const filteredCards = cards.filter(card => {
-            const text = card.innerText.toLowerCase();
-            return text.includes(searchVal);
-        });
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/51999999999?text=Hola,%20deseo%20más%20información%20sobre%20los%20manuales%20de%20NewCosmo" target="_blank" 
+       class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-slate-950 p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center justify-center text-2xl">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-        const totalPages = Math.ceil(filteredCards.length / itemsPerPage) || 1;
-        if(currentPage > totalPages) currentPage = totalPages;
+    <!-- SCRIPT DE FUNCIONALIDAD -->
+    <script>
+        // Datos de ejemplo para los manuales
+        const products = [
+            { id: 1, title: "Manual de Automatización con IA", price: 9.99, category: "Inteligencia Artificial", image: "https://placehold.co/400x300/1e293b/00f2fe?text=Manual+IA" },
+            { id: 2, title: "Secretos de Tráfico Orgánico TikTok", price: 7.99, category: "Marketing", image: "https://placehold.co/400x300/1e293b/4facfe?text=TikTok+Pro" },
+            { id: 3, title: "Desarrollo Frontend con Tailwind CSS", price: 12.99, category: "Desarrollo", image: "https://placehold.co/400x300/1e293b/f5af19?text=Tailwind+CSS" },
+            { id: 4, title: "Monetización de Canales Automáticos", price: 14.99, category: "Negocios", image: "https://placehold.co/400x300/1e293b/00f2fe?text=Canales+Auto" },
+            { id: 5, title: "Copywriting Persuasivo para Ventas", price: 8.99, category: "Marketing", image: "https://placehold.co/400x300/1e293b/4facfe?text=Copywriting" },
+            { id: 6, title: "Dominio de JavaScript Moderno", price: 11.99, category: "Desarrollo", image: "https://placehold.co/400x300/1e293b/f5af19?text=JavaScript" }
+        ];
 
-        cards.forEach(card => card.style.display = "none");
+        let cart = JSON.parse(localStorage.getItem('newcosmo_cart')) || [];
 
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const pageCards = filteredCards.slice(start, end);
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = products.filter(p => p.title.toLowerCase().includes(search) || p.category.toLowerCase().includes(search));
+            
+            document.getElementById('productCount').innerText = `Mostrando ${filtered.length} manuales`;
 
-        pageCards.forEach(card => card.style.display = "flex");
-
-        document.getElementById('no-results').style.display = (filteredCards.length === 0) ? "block" : "none";
-
-        renderPaginationControls(totalPages);
-    }
-
-    function renderPaginationControls(totalPages) {
-        const paginationEl = document.getElementById('pagination');
-        paginationEl.innerHTML = '';
-
-        if(totalPages <= 1) return;
-
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'page-btn';
-        prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.onclick = () => {
-            if(currentPage > 1) {
-                currentPage--;
-                renderCatalog();
-                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">No se encontraron manuales con ese término.</div>`;
+                return;
             }
-        };
-        paginationEl.appendChild(prevBtn);
 
-        for(let i = 1; i <= totalPages; i++) {
-            const pageBtn = document.createElement('button');
-            pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-            pageBtn.innerText = i;
-            pageBtn.onclick = () => {
-                currentPage = i;
-                renderCatalog();
-                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
-            };
-            paginationEl.appendChild(pageBtn);
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col hover:border-cyan-500/50 transition-all group shadow-md">
+                    <div class="relative overflow-hidden h-48 bg-slate-950">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/20">
+                            ${p.category}
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-bold text-white text-base mb-2 group-hover:text-cyan-400 transition-colors">${p.title}</h3>
+                        <div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/60">
+                            <span class="text-lg font-extrabold text-cyan-400">$${p.price.toFixed(2)}</span>
+                            <button onclick="addToCart(${p.id})" class="px-4 py-2 bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-slate-950 font-bold rounded-xl text-sm transition-all border border-cyan-500/30 cursor-pointer">
+                                <i class="fa-solid fa-plus mr-1"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'page-btn';
-        nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
-        nextBtn.disabled = currentPage === totalPages;
-        nextBtn.onclick = () => {
-            if(currentPage < totalPages) {
-                currentPage++;
-                renderCatalog();
-                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) updateCartUI();
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
             }
-        };
-        paginationEl.appendChild(nextBtn);
-    }
-
-    document.getElementById("search").addEventListener("keyup", function() {
-        currentPage = 1;
-        renderCatalog();
-    });
-
-    function sanitize(str) {
-        return str.replace(/[&<>"'/\\*_\n]/g, '').trim();
-    }
-
-    function sendOrderWhatsApp() {
-        if(cart.length === 0) {
-            alert("Agrega al menos una guía a tu carrito de compras.");
-            return;
+            saveAndRefresh();
+            toggleCart();
         }
 
-        const rawName = document.getElementById('cust-name').value;
-        const method = document.getElementById('cust-method').value;
-        const name = sanitize(rawName);
-
-        if(!name) {
-            alert("Por favor ingresa tu nombre completo para personalizar tu acceso.");
-            return;
-        }
-
-        let msg = "📚 *NUEVA SOLICITUD DE ACCESO - MANUALES PREMIUM*\n";
-        msg += "========================================\n\n";
-        msg += `👤 *CLIENTE:* ${name}\n`;
-        msg += `💳 *MÉTODO DE PAGO:* ${method}\n\n`;
-        msg += "========================================\n";
-        msg += "📖 *ITEMS SOLICITADOS:* \n\n";
-
-        let total = 0;
-        cart.forEach((item, index) => {
-            let sub = item.price * item.qty;
-            total += sub;
-            msg += `*${index + 1}.* ${item.name} (x${item.qty}) -> S/ ${sub.toFixed(2)}\n`;
-        });
-
-        msg += "\n========================================\n";
-        msg += `💰 *TOTAL GENERAL: S/ ${total.toFixed(2)}*\n\n`;
-        msg += "Por favor, compártenme los datos de validación para realizar el abono correspondiente y recibir el material. ¡Gracias!";
-
-        const targetNum = "51959493921";
-        window.open(`https://wa.me/${targetNum}?text=${encodeURIComponent(msg)}`, '_blank');
-
-        setTimeout(() => {
-            if(confirm("¿Se abrió correctamente el chat de WhatsApp? Confirma para limpiar tu lista de solicitudes.")) {
-                cart = [];
-                document.getElementById('cust-name').value = '';
-                saveCart();
-                closeCartFunc();
+        function addVipToCart() {
+            const vipProduct = { id: 'vip', title: 'Pase VIP Todo Incluido (Acceso Vitalicio)', price: 29.99, category: 'VIP', quantity: 1 };
+            const existing = cart.find(item => item.id === 'vip');
+            if (!existing) {
+                cart.push(vipProduct);
+            } else {
+                existing.quantity += 1;
             }
-        }, 1200);
-    }
-
-    function toggleDark() {
-        const body = document.body;
-        const icon = document.getElementById('theme-icon');
-        body.classList.toggle("light");
-        
-        if(body.classList.contains("light")) {
-            icon.className = "fas fa-sun";
-            localStorage.setItem("theme", "light");
-        } else {
-            icon.className = "fas fa-moon";
-            localStorage.setItem("theme", "dark");
+            saveAndRefresh();
+            toggleCart();
         }
-    }
 
-    window.onload = () => {
-        setTimeout(() => document.getElementById('splash').classList.add('fade'), 1500);
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            saveAndRefresh();
+        }
+
+        function saveAndRefresh() {
+            localStorage.setItem('newcosmo_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countEl = document.getElementById('cartCount');
+            const itemsEl = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.innerText = totalCount;
+
+            if (cart.length === 0) {
+                itemsEl.innerHTML = `<div class="text-center py-12 text-slate-500"><i class="fa-solid fa-cart-arrow-down text-4xl mb-3"></i><p>Tu carrito está vacío</p></div>`;
+                totalEl.innerText = "$0.00";
+                return;
+            }
+
+            itemsEl.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-white mb-1">${item.title}</h4>
+                        <span class="text-xs text-cyan-400 font-semibold">$${item.price.toFixed(2)}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQuantity('${item.id}', -1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-white rounded-lg flex items-center justify-center text-xs transition-colors"><i class="fa-solid fa-minus"></i></button>
+                        <span class="text-sm font-bold w-5 text-center text-white">${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.id}', 1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 text-white rounded-lg flex items-center justify-center text-xs transition-colors"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalEl.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return alert("Tu carrito está vacío.");
+            let text = "Hola, NEWCOSMO. Deseo realizar el siguiente pedido:\n\n";
+            cart.forEach(i => {
+                text += `- *${i.title}* (x${i.quantity}) - $${(i.price * i.quantity).toFixed(2)}\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            text += `\n*Total a pagar: $${total.toFixed(2)}*\n\nAdjunto mi comprobante de pago.`;
+            
+            const encoded = encodeURIComponent(text);
+            window.open(`https://wa.me/51999999999?text=${encoded}`, '_blank');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderProducts);
+        renderProducts();
         updateCartUI();
-        renderCatalog();
-        if(localStorage.getItem("theme") === "light") {
-            document.body.classList.add("light");
-            document.getElementById('theme-icon').className = "fas fa-sun";
-        }
-    };
-</script>
+    </script>
 </body>
 </html>
