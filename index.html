@@ -373,6 +373,45 @@
             font-size: 1.1rem; color: var(--text); display: none;
         }
 
+        /* --- PAGINACIÓN --- */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+        }
+
+        .page-btn {
+            background: var(--card);
+            color: var(--white);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--cyan);
+            color: #000;
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .page-btn.active {
+            background: var(--cyan);
+            color: #000;
+            border-color: var(--cyan);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
         /* --- TARJETA VIP MODIFICADA CON QR --- */
         .ultimate-vip-container {
             max-width: 900px;
@@ -588,7 +627,7 @@
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay); z-index: 1999; display: none; backdrop-filter: blur(4px); }
         .cart-overlay.open { display: block; }
 
-        /* --- FOOTER MODERNO (SIN SOPORTE COMERCIAL) --- */
+        /* --- FOOTER MODERNO --- */
         footer { 
             background: #090b0e; 
             color: var(--text);
@@ -899,8 +938,52 @@
         </div>
     </div>
 
+    <!-- Ejemplos adicionales para probar la paginación (más de 12 elementos totales) -->
+    <div class="card" data-title="Fotografía Digital" data-price="16.90">
+        <div class="img-wrapper"><img src="https://picsum.photos/400/300?11" alt="Foto"></div>
+        <div class="content">
+            <h3>Fotografía Digital</h3>
+            <p>Manejo de cámaras réflex, iluminación natural, encuadres y revelado digital.</p>
+            <div class="price">S/ 16.90</div>
+            <button class="buy" onclick="addToCart('Fotografía Digital', 16.90)">Agregar al Pedido</button>
+        </div>
+    </div>
+
+    <div class="card" data-title="Edición de Video" data-price="22.90">
+        <div class="img-wrapper"><img src="https://picsum.photos/400/300?12" alt="Video"></div>
+        <div class="content">
+            <h3>Edición de Video</h3>
+            <p>Montaje, efectos visuales y transiciones dinámicas para creadores de contenido.</p>
+            <div class="price">S/ 22.90</div>
+            <button class="buy" onclick="addToCart('Edición de Video', 22.90)">Agregar al Pedido</button>
+        </div>
+    </div>
+
+    <div class="card" data-title="Finanzas Personales" data-price="13.90">
+        <div class="img-wrapper"><img src="https://picsum.photos/400/300?13" alt="Finanzas"></div>
+        <div class="content">
+            <h3>Finanzas Personales</h3>
+            <p>Aprende a gestionar presupuestos, salir de deudas y realizar inversiones inteligentes.</p>
+            <div class="price">S/ 13.90</div>
+            <button class="buy" onclick="addToCart('Finanzas Personales', 13.90)">Agregar al Pedido</button>
+        </div>
+    </div>
+
+    <div class="card" data-title="Huerta Urbana" data-price="11.90">
+        <div class="img-wrapper"><img src="https://picsum.photos/400/300?14" alt="Huerta"></div>
+        <div class="content">
+            <h3>Huerta Urbana</h3>
+            <p>Cultiva tus propios alimentos orgánicos en espacios reducidos en casa.</p>
+            <div class="price">S/ 11.90</div>
+            <button class="buy" onclick="addToCart('Huerta Urbana', 11.90)">Agregar al Pedido</button>
+        </div>
+    </div>
+
     <div class="no-results" id="no-results">No se encontraron manuales con ese criterio.</div>
 </section>
+
+<!-- CONTENEDOR DE PAGINACIÓN -->
+<div class="pagination-container" id="pagination"></div>
 
 <!-- SECCIÓN VIP CON CÓDIGO QR Y ESCANEO -->
 <div class="ultimate-vip-container">
@@ -944,7 +1027,7 @@
     </details>
 </section>
 
-<!-- FOOTER ACTUALIZADO (SIN SOPORTE COMERCIAL) -->
+<!-- FOOTER ACTUALIZADO -->
 <footer>
     <div class="footer-content">
         <div class="footer-col">
@@ -1090,22 +1173,91 @@
         totalEl.innerText = `S/ ${total.toFixed(2)}`;
     }
 
-    document.getElementById("search").addEventListener("keyup", function() {
-        const val = this.value.toLowerCase().trim();
-        const cards = document.querySelectorAll(".products .card");
-        let visibleCount = 0;
+    /* --- LÓGICA DE PAGINACIÓN Y FILTRADO --- */
+    const itemsPerPage = 12;
+    let currentPage = 1;
 
-        cards.forEach(card => {
+    function renderCatalog() {
+        const searchVal = document.getElementById("search").value.toLowerCase().trim();
+        const cards = Array.from(document.querySelectorAll(".products .card"));
+        
+        // Filtrar tarjetas según búsqueda
+        const filteredCards = cards.filter(card => {
             const text = card.innerText.toLowerCase();
-            if(text.includes(val)) {
-                card.style.display = "flex";
-                visibleCount++;
-            } else {
-                card.style.display = "none";
-            }
+            return text.includes(searchVal);
         });
 
-        document.getElementById('no-results').style.display = (visibleCount === 0) ? "block" : "none";
+        const totalPages = Math.ceil(filteredCards.length / itemsPerPage) || 1;
+        if(currentPage > totalPages) currentPage = totalPages;
+
+        // Ocultar todas las tarjetas primero
+        cards.forEach(card => card.style.display = "none");
+
+        // Mostrar solo las tarjetas de la página actual
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageCards = filteredCards.slice(start, end);
+
+        pageCards.forEach(card => card.style.display = "flex");
+
+        // Mensaje si no hay resultados
+        document.getElementById('no-results').style.display = (filteredCards.length === 0) ? "block" : "none";
+
+        // Renderizar controles de paginación
+        renderPaginationControls(totalPages);
+    }
+
+    function renderPaginationControls(totalPages) {
+        const paginationEl = document.getElementById('pagination');
+        paginationEl.innerHTML = '';
+
+        if(totalPages <= 1) return; // No mostrar si cabe en una sola página
+
+        // Botón Anterior
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+            if(currentPage > 1) {
+                currentPage--;
+                renderCatalog();
+                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        paginationEl.appendChild(prevBtn);
+
+        // Botones de Números de Página
+        for(let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+            pageBtn.innerText = i;
+            pageBtn.onclick = () => {
+                currentPage = i;
+                renderCatalog();
+                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            };
+            paginationEl.appendChild(pageBtn);
+        }
+
+        // Botón Siguiente
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+            if(currentPage < totalPages) {
+                currentPage++;
+                renderCatalog();
+                document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+        paginationEl.appendChild(nextBtn);
+    }
+
+    document.getElementById("search").addEventListener("keyup", function() {
+        currentPage = 1; // Reiniciar a la página 1 al buscar
+        renderCatalog();
     });
 
     function sanitize(str) {
@@ -1175,6 +1327,7 @@
     window.onload = () => {
         setTimeout(() => document.getElementById('splash').classList.add('fade'), 1500);
         updateCartUI();
+        renderCatalog(); // Inicializar catálogo con paginación
         if(localStorage.getItem("theme") === "light") {
             document.body.classList.add("light");
             document.getElementById('theme-icon').className = "fas fa-sun";
